@@ -24,7 +24,7 @@ Here're some of the project's best features:
 <p>1. INSTALAR</p>
 
 ```
-npm start
+npm install
 ```
 
 <p>2. EJECUTAR</p>
@@ -53,6 +53,6 @@ Technologies used in the project:
 
 This project is licensed under the 4 FREE
 
-<h2>💖Like my work?</h2>
+<h2>💖Like our work?</h2>
 
 Have a nice day!
