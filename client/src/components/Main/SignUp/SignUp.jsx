@@ -31,7 +31,7 @@ const SignUp = ()=>{
         })
       }/>{errors.email?.type==='required'&& <p>El campo 'Email' es requerido</p>}
       <label htmlFor="">Escribe una contraseña:</label>
-      <input type="text"{
+      <input type="password"{
         ...register('password',{
           required:true,
           minLength:3

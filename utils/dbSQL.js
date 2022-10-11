@@ -1,7 +1,14 @@
 const pg = require('pg');
 require('dotenv').config()
-const ClientClass = pg.Client
-const pgUrl = "postgres://asmlztcc:m_gSxwvBV_YOoJw_bbWfGRjYY6J5i8MY@tyke.db.elephantsql.com/asmlztcc"
-const client = new ClientClass(pgUrl)
+const client = new pg.Client("postgres://bgvfwnly:ZVnvAUmOe28gU52Hb1nKI1h6CtlXZLy1@lucky.db.elephantsql.com/bgvfwnly")
+
+client.connect(function(err){
+    if(err){
+        return console.error('could not connect db',err)
+    }
+    else{
+        return console.error('connected to db')
+    }
+})
 
 module.exports=client;

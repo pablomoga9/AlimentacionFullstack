@@ -4,12 +4,14 @@
 
     const createUser = async(form)=>{
         try{
-            const data = await pool.query(query.createUser,[form.email,form.password,form.role]);
+           
+            const data = await pool.query(query.createUser,[form.email,form.password]);
+           
             const results = data.rows
             return results;
         }
         catch(error){
-            console.log(error);
+            res.staus(400).json({msg:error.response})
         }
     }
 
@@ -20,11 +22,44 @@
             return results;
         }
         catch(error){
-            console.log(error);
+            res.staus(400).json({msg:error.response})
+        }
+    }
+
+    const loginUser = async(req,res)=>{
+        try{
+
+        }
+        catch(error){
+            res.staus(400).json({msg:error.response})
+        }
+    }
+
+    const getUserByEmail = async(e)=>{
+        try{
+            const data = await pool.query(query.getUserByEmail,[e]);
+            const result = data.rows;
+            return result;
+        }
+        catch(error){
+            res.status(400).json({msg:error.stack})
+        }
+    }
+    const getBusinessByEmail = async(e)=>{
+        try{
+            const data = await pool.query(query.getBusinessByEmail,[e]);
+            const result = data.rows;
+            return result;
+        }
+        catch(error){
+            res.status(400).json({msg:error.stack})
         }
     }
 
     module.exports={
         createUser,
-        createBusiness
+        createBusiness,
+        loginUser,
+        getBusinessByEmail,
+        getUserByEmail
     }

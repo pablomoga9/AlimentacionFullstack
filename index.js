@@ -22,14 +22,14 @@ const middle404 = require('./middlewares/error404.js');
 //Rutas
 app.use(helmet());
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 // app.use('/', router);
 app.use('/api/',userRouter);
 app.use(cookieParser())
 
 //Read body request
 app.use(middle404);
-app.use(cors(corsOptions));
+
 app.use(express.json())// Para habilitar recepción de datos JSON en una request //Es necesario??
 app.use(express.urlencoded({ extended: true }));
 const loggerFormat = ':method :url :status :response-time ms - :res[content-length]'
