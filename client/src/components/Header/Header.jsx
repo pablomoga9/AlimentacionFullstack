@@ -1,8 +1,10 @@
 import React from 'react'
+import Nav from './Nav/Nav'
 
 function Header() {
   return (
-    <div>Header</div>
+    <> <Nav/></>
+   
   )
 }
 
