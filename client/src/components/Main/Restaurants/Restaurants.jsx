@@ -1,25 +1,49 @@
-import React, { Component,useContext } from "react";
-import { useEffect } from "react";
-import { checkUserContext } from "../../../context/checkUserContext";
-import { useNavigate } from "react-router-dom";
-import {Link} from 'react-router-dom';
-const Restaurants = ()=>{
-  const {userCheck,setUserCheck} = useContext(checkUserContext);
-  const navigate = useNavigate();
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import RestaurantCard from './RestaurantCard';
 
-  useEffect(()=>{
-    console.log(userCheck);
-    if(userCheck===""){
-      navigate("/");
-    }
-  },[])
 
-  return(
-    <>
-      <h2>Restaurants</h2>
-      <Link to="/">Volver</Link>
-    </>
+function Restaurants() {
+
+
+
+  const [dataRestaurants, setDataRestaurants] = useState([])
+  const [currentItems] = useState(null);
+
+  async function loadDataRestaurants() {
+    let res = await axios.get("https://nasaapinacholopez.herokuapp.com/api/astronomy/neas?to=2022")
+    let data = res.data
+    setDataRestaurants(data)
+    console.log(dataRestaurants);
+  }
+
+  function Items() {
+    return (
+      <>
+        {   dataRestaurants.map((item, i) => (
+            <RestaurantCard key={i} item={item} index={i}/>
+          ))}
+      </>
+    );
+  }
+
+
+
+  useEffect(() => {
+
+   loadDataRestaurants()
+// eslint-disable-next-line
+  }, [])
+
+  
+
+  return (
+    <section>
+      <ul >
+        <Items currentItems={currentItems} />
+      </ul>
+    </section>
   )
 }
 
-export default Restaurants;
+export default Restaurants
