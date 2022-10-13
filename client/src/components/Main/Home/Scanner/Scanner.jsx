@@ -1,5 +1,3 @@
-import React, { Component } from 'react'
-import QrReader from 'react-qr-scanner'
 
 class Scanner extends Component {
   constructor(props) {
@@ -40,3 +38,4 @@ class Scanner extends Component {
 }
 
 export default Scanner;
+
