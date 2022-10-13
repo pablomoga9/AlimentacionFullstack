@@ -51,8 +51,8 @@ const Profile = () => {
   return <div>
     {/* Campos que se pueden editar del perfil */}
     {data ? setValue("email", data.email) : "..."}
-    <h1>{data.email}</h1>
-    <h2>Role: {data.role ? data.role : "???"}</h2>
+    <h1>{data ? data.email : "..."}</h1>
+    <h2>Role: {data ? data.role : "..."}</h2>
     {/* Formulario con los campos del perfil */}
     {data ? <form onSubmit={handleSubmit(editUser)}>
       <fieldset>
