@@ -4,30 +4,33 @@ import { useContext } from 'react'
 import { checkUserContext } from '../../../context/checkUserContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+
 import {Link} from 'react-router-dom';
 // import Scanner from './Scanner/Scanner';
 
-const Home = ()=>{
-  const {userCheck,setUserCheck} = useContext(checkUserContext);
 
-  useEffect(()=>{
-    const checkUser = async()=>{
-      try{
-        const res = await axios.get('http://localhost:5000/api/checkUser',{withCredentials:true});
-        const userToken = res.data.msg.substr(6,res.data.msg.length);
+const Home = () => {
+  const { userCheck, setUserCheck } = useContext(checkUserContext);
+
+  useEffect(() => {
+    const checkUser = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/checkUser', { withCredentials: true });
+        const userToken = res.data.msg.substr(6, res.data.msg.length);
         const user = await jwtDecode(userToken);
+        console.log(user);
         await setUserCheck(user.email);
         console.log(userCheck)
       }
-      catch(error){
+      catch (error) {
         console.log(error.stack);
       }
     }
     checkUser();
-  },[])
+  }, [])
 
 
-  return(
+  return (
     <>
       <div className='directories'>
         <div className='restaurantsDirectory'>
@@ -38,14 +41,16 @@ const Home = ()=>{
         </div>
       </div>
       <div className='novedades'>
-        
+
       </div>
      {userCheck===""?null: <div className='profile'>
         <Link to={'/perfil'}><h3>Perfil</h3></Link>
       </div>}
       <div className='scanner'>
+
         <h3>Scanner</h3>
         {/* <Scanner/> */}
+
       </div>
     </>
   )
