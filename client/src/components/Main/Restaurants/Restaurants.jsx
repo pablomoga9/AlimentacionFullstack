@@ -48,7 +48,7 @@ const Restaurants = ()=>{
       <>
         {currentItems &&
           currentItems.map((item, i) => (
-            <RestaurantCard key={i} item={item}/>
+            <RestaurantCard key={i} item={item} loadDataRestaurants={loadDataRestaurants}/>
           ))}
       </>
       <Link to="/">Volver</Link>
