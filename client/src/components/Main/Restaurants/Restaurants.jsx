@@ -1,31 +1,14 @@
-import React, { Component, useState, useEffect } from "react";
-//import { checkUserContext, useContext } from "../../../context/checkUserContext";
-import { useNavigate } from "react-router-dom";
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import RestaurantCard from './RestaurantCard'
+import RestaurantCard from './RestaurantCard';
 
 
-const Restaurants = ()=>{
+function Restaurants() {
 
-  const [values, setValues] = useState({
-    designation: '',
-    discovery_date: '',
-    h_mag: '',
-    moid_au: '',
-    q_au_1: '',
-    q_au_2: '',
-    period_yr: '',
-    i_deg: '',
-    pha: '',
-    orbit_class: ''
-  });
 
-  //const {userCheck,setUserCheck} = useContext(checkUserContext);
-  const navigate = useNavigate();
+
   const [dataRestaurants, setDataRestaurants] = useState([])
   const [currentItems] = useState(null);
-
 
   async function loadDataRestaurants() {
     let res = await axios.get("https://nasaapinacholopez.herokuapp.com/api/astronomy/neas?to=2022")
@@ -34,26 +17,44 @@ const Restaurants = ()=>{
     console.log(dataRestaurants);
   }
 
-  useEffect(()=>{
-    loadDataRestaurants();
-    // console.log(userCheck);
-    // if(userCheck===""){
-    //   navigate("/");
-    }
-  ,[])
-
-  return(
-    <>
-      <h2>Restaurants</h2>
+  function Items({ currentItems }) {
+    return (
       <>
         {currentItems &&
           currentItems.map((item, i) => (
-            <RestaurantCard key={i} item={item} loadDataRestaurants={loadDataRestaurants}/>
+            <RestaurantCard key={i} item={item} index={i}/>
           ))}
       </>
-      <Link to="/">Volver</Link>
-    </>
+    );
+  }
+
+
+
+  useEffect(() => {
+
+   loadDataRestaurants()
+// eslint-disable-next-line
+  }, [])
+
+  
+
+  return (
+    <section>
+      <h1>Restaurants</h1>
+    
+
+      <ul >
+
+        <Items currentItems={currentItems} />
+
+
+      </ul>
+
+       
+
+
+    </section>
   )
 }
 
-export default Restaurants;
+export default Restaurants
