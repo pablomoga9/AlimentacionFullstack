@@ -54,16 +54,21 @@ const Profile = () => {
           <p>{errors.email?.message}</p>
         </div>
         <p>Copiar mas campos a mostrar/editar</p>
+        <p>Campos select para que indique sus preferencias (TB se peuden editar)</p>
+
         <div>
           <button type="submit">Edit profile</button>
         </div>
       </fieldset>
-    </form> : "Loading..."}
-    Incluir:
-    -Configuración (imagen,nickname y preferencias)
-    -Recomendaciones (en base a las preferencias del usuario)
-    -Historial (creo que de reservas)
-    -Descuentos
+    </form> : "Loading form..."}
+    <h1>Tus recomendaciones</h1>
+    <p>segun tus preferencias se mostraran unos post u otros</p>
+    <h1>Tu historial de reservas</h1>
+    <p>se muestran todas las reservas que has hecho</p>
+
+    <h1>Descuentos</h1>
+    <p>mostrar todos los descuentos de todas las empresas</p>
+
   </div>;
 };
 
