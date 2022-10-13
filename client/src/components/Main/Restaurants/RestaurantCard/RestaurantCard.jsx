@@ -4,7 +4,7 @@ import React from "react";
 const RestaurantCard = (props) => {
   return (
     <>
-      <h1>Asteroides Card</h1>
+      <h1>Restaurantes</h1>
       <div >
         <br />
         name: {props.item.name}
@@ -25,8 +25,7 @@ const RestaurantCard = (props) => {
         <br />
         reclong: {props.item.reclong}
         <br />
-        geolocation: latitude {props.item.geolocation.latitude}, longitude {props.item.geolocation.longitude}
-        <br />
+        
 
       </div>
 

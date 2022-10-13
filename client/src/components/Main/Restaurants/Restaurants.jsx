@@ -17,11 +17,10 @@ function Restaurants() {
     console.log(dataRestaurants);
   }
 
-  function Items({ currentItems }) {
+  function Items() {
     return (
       <>
-        {currentItems &&
-          currentItems.map((item, i) => (
+        {   dataRestaurants.map((item, i) => (
             <RestaurantCard key={i} item={item} index={i}/>
           ))}
       </>
@@ -40,19 +39,9 @@ function Restaurants() {
 
   return (
     <section>
-      <h1>Restaurants</h1>
-    
-
       <ul >
-
         <Items currentItems={currentItems} />
-
-
       </ul>
-
-       
-
-
     </section>
   )
 }
