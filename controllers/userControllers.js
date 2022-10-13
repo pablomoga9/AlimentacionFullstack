@@ -4,6 +4,21 @@ const saltRounds = 10;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 
+//Obtener usuario por email
+const getUserByEmail = async (req, res) => {
+    let email = req.query.email;
+    console.log("controller", email);
+    if (email) {
+        try {
+            let user = await userModels.getUserByEmail(email);
+            res.status(200).json(user);
+        } catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "User not found" });
+        }
+    }
+}
+
 //Opcional: comprobar que el correo no este registrado
 const signUpUser = async (req, res) => {
     try {
@@ -113,6 +128,7 @@ const checkUser = async (req, res) => {
 }
 
 module.exports = {
+    getUserByEmail,
     signUpUser,
     loginUser,
     checkUser,
