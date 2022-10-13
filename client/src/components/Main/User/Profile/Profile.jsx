@@ -2,9 +2,11 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { checkUserContext } from '../../../../context/checkUserContext'
 import React, { useEffect, useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 const Profile = () => {
+  const navigate = useNavigate();
   const { register, setValue, handleSubmit, watch, formState: { errors } } = useForm();//Formulario
   const { userCheck } = useContext(checkUserContext);//Hook para obtener el email del usuario logado
   const [data, setData] = useState()//Hook para guardar los datos del perfil de usuario
@@ -13,7 +15,10 @@ const Profile = () => {
 
   useEffect(() => {
     userDetails();
-
+    console.log(userCheck);
+    if (userCheck === "") {
+      navigate("/");
+    }
   }, []);
 
   //Obtener todos los datos de user
@@ -46,7 +51,8 @@ const Profile = () => {
   return <div>
     {/* Campos que se pueden editar del perfil */}
     {data ? setValue("email", data.email) : "..."}
-
+    <h1>{data.email}</h1>
+    <h2>Role: {data.role ? data.role : "???"}</h2>
     {/* Formulario con los campos del perfil */}
     {data ? <form onSubmit={handleSubmit(editUser)}>
       <fieldset>

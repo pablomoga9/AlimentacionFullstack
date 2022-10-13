@@ -7,7 +7,6 @@ const bcrypt = require('bcrypt');
 //Obtener usuario por email
 const getUserByEmail = async (req, res) => {
     let email = req.query.email;
-    console.log("controller", email);
     if (email) {
         try {
             let user = await userModels.getUserByEmail(email);
@@ -22,7 +21,6 @@ const getUserByEmail = async (req, res) => {
 //Opcional: comprobar que el correo no este registrado
 const signUpUser = async (req, res) => {
     try {
-        console.log("estas en singUser");
         const hashPassword = bcrypt.hashSync(req.body.password, saltRounds);
 
 
