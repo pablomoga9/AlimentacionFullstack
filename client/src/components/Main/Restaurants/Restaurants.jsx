@@ -1,48 +1,51 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import RestaurantCard from './RestaurantCard';
+import React, { Component,useContext } from "react";
+import { useEffect } from "react";
+import { checkUserContext } from "../../../context/checkUserContext";
+import { useNavigate } from "react-router-dom";
+import {Link} from 'react-router-dom';
+import axios from "axios";
+import { useState } from "react";
+import RestaurantCard from "./RestaurantCard";
+import {useForm} from 'react-hook-form';
 
+const Restaurants = ()=>{
+  const {userCheck,setUserCheck} = useContext(checkUserContext);
+  const navigate = useNavigate();
+  const [data,setData] = useState([]);
 
-function Restaurants() {
+  useEffect(()=>{
+    if(userCheck===""){
+      navigate("/");
+    }
+    else{
+      const getData = async()=>{
+        try{  
+          const res = await axios.get('https://pokeapi.co/api/v2/pokemon');
+          setData(res.data.results);
+        }
+        catch(error){
+          console.log(error);
+        }
+      }
+      getData();
+    }
+  },[])
 
-
-
-  const [dataRestaurants, setDataRestaurants] = useState([])
-  const [currentItems] = useState(null);
-
-  async function loadDataRestaurants() {
-    let res = await axios.get("https://nasaapinacholopez.herokuapp.com/api/astronomy/neas?to=2022")
-    let data = res.data
-    setDataRestaurants(data)
-    console.log(dataRestaurants);
-  }
-
-  function Items() {
-    return (
-      <>
-        {   dataRestaurants.map((item, i) => (
-            <RestaurantCard key={i} item={item} index={i}/>
-          ))}
-      </>
-    );
-  }
-
-
-
-  useEffect(() => {
-
-   loadDataRestaurants()
-// eslint-disable-next-line
-  }, [])
-
-  
-
-  return (
-    <section>
-      <ul >
-        <Items currentItems={currentItems} />
-      </ul>
-    </section>
+  return(
+    <>
+      <h2>Restaurants</h2>
+      <Link to="/">Volver</Link>
+      <input></input>
+      
+        {data?data.map((item,i)=>{
+          return <div>  
+            <RestaurantCard data={item}/>
+          </div>
+            
+          
+        }):<h2>Loading...</h2>}
+      
+    </>
   )
 }
 
