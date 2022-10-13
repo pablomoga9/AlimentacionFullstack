@@ -10,8 +10,9 @@ const Profile = () => {
   const { register, setValue, handleSubmit, watch, formState: { errors } } = useForm();//Formulario
   const { userCheck } = useContext(checkUserContext);//Hook para obtener el email del usuario logado
   const [data, setData] = useState()//Hook para guardar los datos del perfil de usuario
+  const checkList = ["service_loca", "service_recogida", "service_reparto", "ambiente_dia", "ambiente_noche", "pet_friendly", "LGTBI_friendly", "slow_food", "healthy", "fresco", "de_temporada", "sostenible", "organico", "eco", "bio", "de_proximidad", "vegetariano", "vegano"];//CheckList services
+  const [checked, setChecked] = useState({});//Estado para ver cuantos check hay marcados
   console.log(userCheck);
-
 
   useEffect(() => {
     userDetails();
@@ -23,29 +24,56 @@ const Profile = () => {
 
   //Obtener todos los datos de user
   const userDetails = async () => {
+    console.log("user detail");
     try {
-      console.log("Details");
       const { data } = await axios.get(`/api/getUser/?email=${userCheck}`);
       setData(...data)
-      console.log("Data user details", data);//Mostrar en consola los datos del usuario buscado
     } catch (error) {
       console.log(error);
     }
   }
-  console.log(data);
 
   //Editar los datos del usuario
   const editUser = async (data) => {
     try {
-      console.log("EDIT USER DATA", data);
       const refactorData = {
         email: data.email,
+
       }
-      await axios.put('/api/updateUser', refactorData);
+      const mergedData = { ...refactorData, ...checked };//unimos el objeto refactor data que contiene los datos de los inputs, con los datos de los checkbox
+      console.log("USER EDITED", mergedData);
+      // await axios.put('/api/updateUser', mergedData);
     } catch (error) {
       console.log(error, "No se ha podido editar el Usuario")
     }
   }
+
+  // Add/Remove checked item from list
+  const handleCheck = (event) => {
+    console.log("event", event);
+    var updatedList = { ...checked };
+    if (event.target.checked) {//Si se marcha un check, se añade a la lista de checked
+      const item = event.target.value;
+      const newItem = {
+        [item]: true
+      }
+      updatedList = { ...checked, ...newItem };
+      setChecked(updatedList);
+    } else {//Si se desmarca un check lo quita de la lista de checked
+      const itemValue = event.target.value;
+      const asArray = Object.entries(checked);
+      const filtered = asArray.filter(([key, value]) => key !== itemValue);
+      const asObjet = Object.fromEntries(filtered);
+      setChecked(asObjet);
+    }
+
+  };
+
+  // Return classes based on whether item is checked
+  // const isChecked = (item) =>
+  //   checked.includes(item) ? true : false;
+
+  console.log(checked);
 
 
   return <div>
@@ -65,19 +93,33 @@ const Profile = () => {
         </div>
         <p>Copiar mas campos a mostrar/editar</p>
         <p>Campos select para que indique sus preferencias (TB se peuden editar)</p>
-
+        <h3>Preferencias</h3>
+        {checkList.map((item, i) => (
+          <article key={i}>
+            <input type="checkbox" value={item} onChange={handleCheck} />
+            <span>{item}</span>
+          </article>
+        ))
+        }
+        <div>
+          <input type="checkbox" id="" name='servicio_local'
+            {...register("servicio_local", { minLength: { value: 1, message: "." } })} />
+          Servicio local
+        </div>
         <div>
           <button type="submit">Edit profile</button>
         </div>
       </fieldset>
     </form> : "Loading form..."}
     <h1>Tus recomendaciones</h1>
-    <p>segun tus preferencias se mostraran unos post u otros</p>
+    <p>segun tus preferencias se mostraran unas cards de servicios de negocios</p>
     <h1>Tu historial de reservas</h1>
-    <p>se muestran todas las reservas que has hecho</p>
+    <p>se muestran todas las reservas que has hecho </p>
+    <p>RESERVAS DE DONDE?? DE UN SERVICIO?</p>
 
     <h1>Descuentos</h1>
     <p>mostrar todos los descuentos de todas las empresas</p>
+    <p>ESOS DESCUENTOS DONDE SE ALMACENAN??</p>
 
   </div>;
 };
