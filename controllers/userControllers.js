@@ -89,7 +89,29 @@ const loginUser = async(req,res)=>{
     }
 }
 
+
+const logoutUser = async(req,res)=>{
+    try{
+        return res.clearCookie("token").send();
+    }   
+    catch(error){
+        res.status(400).json({msg:"could not logout"})
+    }
+}
+
+
+const checkUser = async(req,res)=>{
+    try{
+        res.status(200).json({msg:req.headers.cookie})
+    }
+    catch(error){
+        res.status(400).json({msg:error.response})
+    }
+}
+
 module.exports={
     signUpUser,
-    loginUser
+    loginUser,
+    checkUser,
+    logoutUser
 }

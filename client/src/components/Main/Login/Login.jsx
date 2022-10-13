@@ -1,15 +1,15 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import {useForm} from 'react-hook-form';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
-import jwt from 'jwt-decode';
-
+import jwtDecode from 'jwt-decode';
+import { checkUserContext } from '../../../context/checkUserContext';
 
 
 const Login = ()=>{
   const {register,formState:{errors},handleSubmit} = useForm();
   const navigate = useNavigate();
-  
+  const {userCheck,setUserCheck} = useContext(checkUserContext);
 
   const onSubmit = async(form)=>{
     try{  
@@ -23,6 +23,7 @@ const Login = ()=>{
         credentials:'include'
       })
       console.log(res.data);
+      navigate('/')
     }
     catch(error){
       console.log(error);
