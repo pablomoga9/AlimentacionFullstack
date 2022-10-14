@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+require('dotenv')
 const cookieParser= require('cookie-parser')
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -41,7 +42,7 @@ const loggerFormat = ':method :url :status :response-time ms - :res[content-leng
 // }));
 
 // Serve the static files from the React app
-// app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // Handles any requests that don't match the ones above
 app.get('*', (req, res) => {
