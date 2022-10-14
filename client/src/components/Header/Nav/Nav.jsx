@@ -16,7 +16,7 @@ function Nav() {
   const handleLogout = async () => {
     try {
       const res = await axios.get('http://localhost:5000/api/logout', { withCredentials: true });
-      await setUserCheck("");
+      await setUserCheck(null);
       navigate("/")
     }
     catch (error) {
@@ -26,8 +26,8 @@ function Nav() {
 
   return (
     <header>
-      {userCheck === "" ? <div>
-        <Link onClick={handleClick} to="/login">Login</Link>
+      {userCheck === null ? <div>
+        <Link onClick={handleClick} to="/">Login</Link>
         <Link onClick={handleClick} to="/signup">Registro</Link>
       </div> : <div>
         <Link to={'User/Profile'}><p>{userCheck}</p></Link>

@@ -4,34 +4,29 @@ import { useContext } from 'react'
 import { checkUserContext } from '../../../context/checkUserContext';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
-
-import {Link} from 'react-router-dom';
+import Logo from "../../common/Logo"
+import { Link, useNavigate } from "react-router-dom";
 // import Scanner from './Scanner/Scanner';
 
 
 const Home = () => {
   const { userCheck, setUserCheck } = useContext(checkUserContext);
+  const { checkUser } = useContext(checkUserContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const res = await axios.get('http://localhost:5000/api/checkUser', { withCredentials: true });
-        const userToken = res.data.msg.substr(6, res.data.msg.length);
-        const user = await jwtDecode(userToken);
-        console.log(user);
-        await setUserCheck(user.email);
-        console.log(userCheck)
-      }
-      catch (error) {
-        console.log(error.stack);
-      }
-    }
-    checkUser();
-  }, [])
+    checkUser()
+    console.log(userCheck);
+    // if (userCheck === null) {
+    //   navigate("/");
+    // }
+  }, []);
 
 
   return (
     <>
+      <Logo />
+      <div></div>
       <div className='directories'>
         <div className='restaurantsDirectory'>
           <Link className='imgContainer' to={'/restaurants'}><img className='restaurantImg' src="https://www.crisb.es/wp-content/uploads/2019/03/huerto-de-lucas-restaurante-ecologico.jpg" alt="" /><h3 className='directoryTitle'>Restaurantes</h3></Link>
@@ -41,11 +36,11 @@ const Home = () => {
         </div>
       </div>
       <div className='novedades'>
-
+        <h1>NOVEDADES</h1>
       </div>
-     {userCheck===""?null: <div className='profile'>
-        <Link to={'/perfil'}><h3>Perfil</h3></Link>
-      </div>}
+      <div className='profile'>
+        <Link to={'/user/profile'}><h1>Perfil</h1></Link>
+      </div>
       <div className='scanner'>
 
         <h3>Scanner</h3>

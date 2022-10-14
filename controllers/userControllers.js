@@ -10,6 +10,7 @@ const getUserByEmail = async (req, res) => {
     if (email) {
         try {
             let user = await userModels.getUserByEmail(email);
+            console.log(user);
             res.status(200).json(user);
         } catch (error) {
             console.log(`ERROR: ${error.stack}`);
