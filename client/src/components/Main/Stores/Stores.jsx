@@ -1,7 +1,9 @@
 import { checkUserContext } from '../../../context/checkUserContext'
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import List from "../List/List"
+import { v4 as uuidv4 } from 'uuid';
+// import List from "../List/List"
+import Card from '../List/Card/Card';
 import axios from "axios";
 
 
@@ -72,23 +74,27 @@ const Stores = () => {
     }
   }
 
-  return <div>
-    <div><h1>Comercios cerca de ti</h1></div>
-    <div>Menu hamburguesa</div>
-
-    <div>
-      <select onChange={handleChange}>
-        <option selected value="bestValue">Mejor Valorados</option>
-        <option value="byName">Por nombre</option>
-        <option value="byProximity">Por cercanía</option>
-        <option value="byScore">Por puntuación</option>
-      </select>
-    </div>
-    <h3></h3>
-    {stores != null ?
-      <List />
-      : "Loading..."}
-  </div >;
+  return (
+    <div className="listContainer" >
+      <div className="backButton">
+        <Link to="/"><img src={BackLogo} alt="" /></Link>
+      </div>
+      <div className="storesTitleContainer">
+        <h2 className="storesTitle">Comercios cerca de ti</h2>
+      </div>
+      <div className="sortBurger">
+        <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
+        <select className="sortList" onChange={handleChange}>
+          <option value="rating">Mejor valoradas</option>
+          <option value="closest">Más cercanas</option>
+        </select>
+      </div>
+      <ul className="directoryList">
+        {stores.length > 0 ? stores
+          .map((item, i) => <Card key={uuidv4()} index={i} value={item} />)
+          : <h2>Loading...</h2>}</ul>
+    </div >
+  )
 };
 
 
