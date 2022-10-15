@@ -29,7 +29,7 @@ app.use('/api/', userRouter);
 app.use(cookieParser())
 
 //Read body request
-app.use(middle404);
+
 
 app.use(express.json())// Para habilitar recepción de datos JSON en una request //Es necesario??
 app.use(express.urlencoded({ extended: true }));
@@ -49,7 +49,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname + '/client/build/index.html'));
 });
 
-
+app.use(middle404);
 app.listen(port);
 
 console.log('App is listening on port ' + port);
