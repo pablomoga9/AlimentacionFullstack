@@ -1,0 +1,54 @@
+.storesTitleContainer{
+    background: #279B48;
+    border-radius: 8px;
+    width: 80%;
+    margin: auto;
+    padding: 8px;
+    gap: 24px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .storesTitle{
+       color: #F4FAF6;
+      
+      
+     
+      
+       
+    }
+}
+
+.backButton{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-left: 25px;
+}
+
+.sortBurger{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    width: 80%;
+    margin-left:80px;
+    .burgerBtn{
+       
+    }
+    button{
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+    }
+    .sortList{
+        border: 1px solid #279B48;
+        background: #E9F5ED;
+        border-radius: 8px;
+        padding: 0px 40px;
+        text-align-last:left;
+        
+    }
+}

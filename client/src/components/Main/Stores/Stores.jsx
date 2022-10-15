@@ -7,6 +7,8 @@ import axios from "axios";
 import { useState } from "react";
 import StoreCard from "./StoreCard/StoreCard";
 import {useForm} from 'react-hook-form';
+import BackLogo from '../../../assets/img/Back @2x.png';
+import BurgerBtn from '../../../assets/img/menu@2x.png'
 
 const Stores = ()=>{
   const {userCheck,setUserCheck} = useContext(checkUserContext);
@@ -33,9 +35,21 @@ const Stores = ()=>{
 
   return(
     <>
-      <h2>Comercios cerca de ti</h2>
-      <Link to="/">Volver</Link>
-      <input></input>
+      <div className="backButton">
+        <Link to="/"><img src={BackLogo} alt="" /></Link>
+      </div>
+      <div className="storesTitleContainer">
+        <h2 className="storesTitle">Comercios cerca de ti</h2>
+      </div>
+     
+     <div className="sortBurger">
+      <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
+      <select className="sortList">
+          <option value="rating">Mejor valoradas</option>
+          <option value="closest">Más cercanas</option>
+        </select>
+     </div>
+      
       
         {data?data.map((item,i)=>{
           return <div key={i}>  
