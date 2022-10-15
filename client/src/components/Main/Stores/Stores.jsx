@@ -1,75 +1,101 @@
-import React, { Component,useContext } from "react";
-import { useEffect } from "react";
-import { checkUserContext } from "../../../context/checkUserContext";
-import { useNavigate } from "react-router-dom";
-import {Link} from 'react-router-dom';
+import { checkUserContext } from '../../../context/checkUserContext'
+import React, { useEffect, useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
+// import List from "../List/List"
+import Card from '../List/Card/Card';
 import axios from "axios";
-import { useState } from "react";
-import StoreCard from "./StoreCard/StoreCard";
-import {useForm} from 'react-hook-form';
-import BackLogo from '../../../assets/img/Back @2x.png';
-import BurgerBtn from '../../../assets/img/menu@2x.png';
-import { slide as Menu } from 'react-burger-menu'
 
-const Stores = ()=>{
-  const {userCheck,setUserCheck} = useContext(checkUserContext);
+
+const Stores = () => {
   const navigate = useNavigate();
-  const [data,setData] = useState([]);
+  const { userCheck } = useContext(checkUserContext);//Hook para obtener el email del usuario logado
+  const { userData } = useContext(checkUserContext);//Hook para guardar los datos del perfil de usuario
+  const { userDetails } = useContext(checkUserContext);//Funcion para obtener los detalles del usuario
+  const { stores, setStores } = useContext(checkUserContext);//Hook con el listado de las stores
+  const { getStores } = useContext(checkUserContext);//Funcion para obtener el listado de stores
+  const [sortBy, setSortBy] = useState("bestValue"); //Para indicar como ordenar el listado
 
-  useEffect(()=>{
-    if(userCheck===""){
-      navigate("/");
+
+  console.log("userCheck", userCheck);
+  console.log(sortBy);
+  console.log(stores);
+
+
+  useEffect(() => {
+    getStores();//Cambiar a getStoresSortBy(sortBy)
+
+    console.log(userCheck);
+    if (userCheck === null) {
+      navigate("/home");
     }
-    else{
-      const getData = async()=>{
-        try{  
-          const res = await axios.get('https://rickandmortyapi.com/api/character');
-          setData(res.data.results);
-        }
-        catch(error){
-          console.log(error);
-        }
-      }
-      getData();
+  }, []);
+
+  const handleChange = (e) => {
+    setSortBy(e.target.value)
+    console.log("sorBy", e.target.value);
+    handleSort(e.target.value);
+  }
+
+  //Ordenar por nombre
+  const handleSort = (sort) => {
+    console.log("HANDLESORT", sortBy);
+    if (sort === "byName") {
+      console.log("Ordenado de la A a la Z");
+      //Para ordenar de la A a la Z
+      const data = [...stores].sort((a, b) => {
+        return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
+      })
+      setStores(data);
     }
-  },[])
+    else if (sort === "bestValue") {//Hay que modificarlo
+      console.log("Ordenado de la A a la Z");
+      //Para ordenar de la A a la Z
+      const data = [...stores].sort((a, b) => {
+        return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
+      })
+      setStores(data);
+    }
+    else if (sort === "byProximity") {//Hay que modificarlo
+      console.log("Ordenado de la A a la Z");
+      //Para ordenar de la A a la Z
+      const data = [...stores].sort((a, b) => {
+        return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
+      })
+      setStores(data);
+    }
+    else if (sort === "byScore") {//Hay que modificarlo
+      console.log("Ordenado de la A a la Z");
+      //Para ordenar de la A a la Z
+      const data = [...stores].sort((a, b) => {
+        return a.name.toUpperCase() > b.name.toUpperCase() ? 1 : -1
+      })
+      setStores(data);
+    }
+  }
 
-
-  function showSettings (event) {
-    event.preventDefault();
-   }
-
-  return(
+  return (
     <div className="listContainer" >
-       
       <div className="backButton">
         <Link to="/"><img src={BackLogo} alt="" /></Link>
       </div>
       <div className="storesTitleContainer">
         <h2 className="storesTitle">Comercios cerca de ti</h2>
       </div>
-     
-     <div className="sortBurger">
-      <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
-      <select className="sortList">
+      <div className="sortBurger">
+        <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
+        <select className="sortList" onChange={handleChange}>
           <option value="rating">Mejor valoradas</option>
           <option value="closest">Más cercanas</option>
         </select>
-     </div>
-      
+      </div>
       <ul className="directoryList">
-        {data?data.map((item,i)=>{
-          return <li key={i}>  
-            <StoreCard data={item}/>
-          </li>
-            
-          
-        }):<h2>Loading...</h2>}
-      </ul>
-      
-    </div>
-    
+        {stores.length > 0 ? stores
+          .map((item, i) => <Card key={uuidv4()} index={i} value={item} />)
+          : <h2>Loading...</h2>}</ul>
+    </div >
   )
-}
+};
+
 
 export default Stores;

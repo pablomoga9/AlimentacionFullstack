@@ -1,12 +1,13 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Link } from 'react-router-dom';
 
 
-const RestaurantCard = (props) => {
+function Card(props) {
+  console.log(props);
   const info = props.data;
 
   return (
-    <Link className="detailLink">
+    <Link to={`/stores/details/${info.id}`} className="detailLink">
       <div className="cardContainer">
         <div className="cardText">
           <h4 >{info.name}<p>$$</p></h4>
@@ -19,4 +20,4 @@ const RestaurantCard = (props) => {
 };
 
 
-export default RestaurantCard;
+export default Card

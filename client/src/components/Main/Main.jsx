@@ -7,6 +7,8 @@ import Restaurants from './Restaurants/Restaurants'
 import Stores from './Stores/Stores';
 import Profile from './User/Profile'
 import Edit from './User/Profile/Edit/Edit';
+import Details from "./Stores/Details/Details"
+
 
 function Main() {
   return (
@@ -19,6 +21,7 @@ function Main() {
         <Route element={<Stores />} path={"/stores"} />
         <Route element={<Profile />} path={"/user/profile"} />
         <Route element={<Edit />} path={"/user/profile/edit"} />
+        <Route element={<Details />} path={"/stores/details/:id"} />
       </Routes>
     </main>
   )
