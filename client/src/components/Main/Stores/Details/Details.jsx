@@ -5,6 +5,9 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { checkUserContext } from "../../../../context/checkUserContext"
+import Descuentos from "../../../common/Descuentos/Descuentos";
+import Reserva from "../../../common/Reserva/Reserva";
+import Map from "../../../common/Map/Map";
 
 
 
@@ -45,28 +48,9 @@ function Details() {
       </ul>
         : "Loading..."}
 
-
-
-
-      <div>
-        <MapContainer style={map} center={[51.505, -0.09]} zoom={1} scrollWheelZoom={true}>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {storeDetails ?
-            <Marker
-              position={[37.41667, -6]}
-              icon={icon}>
-              <Popup>Detalles:
-                <ul>
-                  <li>Nombre: {storeDetails.name}</li>
-                </ul>
-              </Popup>
-            </Marker>
-            : null}
-        </MapContainer>
-      </div>
+      <Descuentos />
+      <Reserva />
+      <Map />
     </article>
   )
 }
