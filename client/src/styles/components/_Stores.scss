@@ -31,6 +31,8 @@
     margin-bottom: 30px;
 }
 
+
+
 .sortBurger{
     display: flex;
     justify-content: space-between;
@@ -126,6 +128,16 @@
        
     }
 }
+.detailLink:hover{
+    .cardContainer{
+        .cardText{
+            height: 35%;
+            transition: 0.7s;
+            background: rgba(33, 140, 63, 0.811);
+        }
+    }
+}
+
 
 @media (min-width: 600px) {
     .directoryList{
