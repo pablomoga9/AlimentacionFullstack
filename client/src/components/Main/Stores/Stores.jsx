@@ -8,7 +8,8 @@ import { useState } from "react";
 import StoreCard from "./StoreCard/StoreCard";
 import {useForm} from 'react-hook-form';
 import BackLogo from '../../../assets/img/Back @2x.png';
-import BurgerBtn from '../../../assets/img/menu@2x.png'
+import BurgerBtn from '../../../assets/img/menu@2x.png';
+import { slide as Menu } from 'react-burger-menu'
 
 const Stores = ()=>{
   const {userCheck,setUserCheck} = useContext(checkUserContext);
@@ -33,8 +34,14 @@ const Stores = ()=>{
     }
   },[])
 
+
+  function showSettings (event) {
+    event.preventDefault();
+   }
+
   return(
-    <>
+    <div className="listContainer" >
+       
       <div className="backButton">
         <Link to="/"><img src={BackLogo} alt="" /></Link>
       </div>
@@ -50,16 +57,18 @@ const Stores = ()=>{
         </select>
      </div>
       
-      
+      <ul className="directoryList">
         {data?data.map((item,i)=>{
-          return <div key={i}>  
+          return <li key={i}>  
             <StoreCard data={item}/>
-          </div>
+          </li>
             
           
         }):<h2>Loading...</h2>}
+      </ul>
       
-    </>
+    </div>
+    
   )
 }
 
