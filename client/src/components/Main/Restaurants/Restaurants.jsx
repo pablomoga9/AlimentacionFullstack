@@ -7,6 +7,9 @@ import axios from "axios";
 import { useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import {useForm} from 'react-hook-form';
+import BackLogo from '../../../assets/img/Back @2x.png';
+import BurgerBtn from '../../../assets/img/menu@2x.png';
+import { slide as Menu } from 'react-burger-menu'
 
 const Restaurants = ()=>{
   const {userCheck,setUserCheck} = useContext(checkUserContext);
@@ -20,7 +23,7 @@ const Restaurants = ()=>{
     else{
       const getData = async()=>{
         try{  
-          const res = await axios.get('https://pokeapi.co/api/v2/pokemon');
+          const res = await axios.get('https://rickandmortyapi.com/api/character');
           setData(res.data.results);
         }
         catch(error){
@@ -31,22 +34,42 @@ const Restaurants = ()=>{
     }
   },[])
 
+
+  function showSettings (event) {
+    event.preventDefault();
+   }
+
   return(
-    <>
-      <h2>Restaurants</h2>
-      <Link to="/">Volver</Link>
-      <input></input>
+    <div className="listContainer" >
+       
+      <div className="backButton">
+        <Link to="/"><img src={BackLogo} alt="" /></Link>
+      </div>
+      <div className="storesTitleContainer">
+        <h2 className="storesTitle">Restaurantes cerca de ti</h2>
+      </div>
+     
+     <div className="sortBurger">
+      <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
+      <select className="sortList">
+          <option value="rating">Mejor valoradas</option>
+          <option value="closest">Más cercanas</option>
+        </select>
+     </div>
       
+      <ul className="directoryList">
         {data?data.map((item,i)=>{
-          return <div>  
+          return <li key={i}>  
             <RestaurantCard data={item}/>
-          </div>
+          </li>
             
           
         }):<h2>Loading...</h2>}
+      </ul>
       
-    </>
+    </div>
+    
   )
 }
 
-export default Restaurants
+export default Restaurants;
