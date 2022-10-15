@@ -12,7 +12,10 @@ import jwtDecode from 'jwt-decode';
 
 function App() {
   const [userCheck, setUserCheck] = useState(null);
-  const [userData, setUserData] = useState(null)//Hook para guardar los datos del perfil de usuario
+  const [userData, setUserData] = useState(null)//Hook para almacenar los datos del perfil de usuario
+  const [stores, setStores] = useState(null);//Hook para almacenar el listado de tiendas
+  const [storeDetails, setStoreDetails] = useState(null);//Hook para almacenar los detalles de una store
+
 
   console.log("userCheck ", userCheck);
 
@@ -20,6 +23,7 @@ function App() {
 
   }, [])
 
+  //Users----------------------------------------------------------------------------
   //Checkear usuario
   const checkUser = async () => {
     try {
@@ -47,6 +51,33 @@ function App() {
       console.log(error);
     }
   }
+  //------------------------------------------------------------------
+
+  //Stores -----------------------------------------------------------
+  //Obtener listado de todas las tiendas
+  const getStores = async () => {
+    try {
+      console.log("Estas en getStoresSortBy");
+
+      const res = await axios.get('https://rickandmortyapi.com/api/character');
+      setStores(res.data.results.slice(0, 5));
+    }
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  //Obtener los detalles de una store
+  const getStoreDetails = async (id) => {
+    try {
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      console.log(res);
+      setStoreDetails(res.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  //------------------------------------------------------------------
 
 
   const data = {
@@ -55,7 +86,13 @@ function App() {
     userCheck,
     setUserCheck,
     userData,
-    setUserData
+    setUserData,
+    stores,
+    setStores,
+    getStores,
+    getStoreDetails,
+    storeDetails,
+    setStoreDetails
   }
 
 

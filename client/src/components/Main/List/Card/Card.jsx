@@ -1,9 +1,20 @@
-import React from "react";
+import React from 'react'
+import { Link } from 'react-router-dom';
 
-const Card = () => {
+
+function Card(props) {
+
   return (
-    <div>Card</div>
-  )
-};
+    <article>
+      <Link to={`/stores/details/${props.value.id}`}>
+        <img src={props.value.image} alt={props.value.name} />
+      </Link>
+      <li>{props.value.name}</li>
+      <li>{props.value.species}</li>
 
-export default Card;
+
+    </article>
+  )
+}
+
+export default Card
