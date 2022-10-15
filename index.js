@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 require('dotenv').config();
-const cookieParser= require('cookie-parser')
+const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -10,8 +10,8 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 var corsOptions = {
-    origin:'http://localhost:3000',
-    credentials:true
+    origin: 'http://localhost:3000',
+    credentials: true
 }
 //Router
 const userRouter = require('./routes/userRoutes.js');
@@ -25,7 +25,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(cors(corsOptions));
 // app.use('/', router);
-app.use('/api/',userRouter);
+app.use('/api/', userRouter);
 app.use(cookieParser())
 
 //Read body request

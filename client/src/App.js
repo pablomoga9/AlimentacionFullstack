@@ -40,7 +40,7 @@ function App() {
   const userDetails = async () => {
     try {
       console.log(userCheck);
-      const datas = await axios.get(`/api/getUser/?email=${userCheck}`);
+      const datas = await axios.get(`http://localhost:5000/api/getUser/?email=${userCheck}`);
       setUserData(...datas.data)
       console.log("user detail", datas.data);
     } catch (error) {
