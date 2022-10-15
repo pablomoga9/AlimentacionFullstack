@@ -32,7 +32,7 @@ const Home = () => {
           <Link className='imgContainer' to={'/restaurants'}><img className='restaurantImg' src="https://www.crisb.es/wp-content/uploads/2019/03/huerto-de-lucas-restaurante-ecologico.jpg" alt="" /><h3 className='directoryTitle'>Restaurantes</h3></Link>
         </div>
         <div className='storesDirectory'>
-          <Link className='imgContainer' to={'/stores'}><img className='storeImg' src="https://revista.storyous.es/wp-content/uploads/sites/2/2018/05/mamacampo3.jpg" alt="" /><h3 className='directoryTitle'>Tiendas</h3></Link>
+          <Link className='imgContainer' to={'/stores/'}><img className='storeImg' src="https://revista.storyous.es/wp-content/uploads/sites/2/2018/05/mamacampo3.jpg" alt="" /><h3 className='directoryTitle'>Tiendas</h3></Link>
         </div>
       </div>
       <div className='novedades'>

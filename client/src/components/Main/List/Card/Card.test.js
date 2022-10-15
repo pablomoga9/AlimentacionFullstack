@@ -1,10 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import StoreCard from "./StoreCard";
+import Card from "./Card";
 
-describe("StoreCard", () => {
+describe("Card", () => {
   test("matches snapshot", () => {
-    const wrapper = shallow(<StoreCard />);
+    const wrapper = shallow(<Card />);
     expect(wrapper).toMatchSnapshot();
   });
 });
