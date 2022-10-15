@@ -5,6 +5,9 @@ import { v4 as uuidv4 } from 'uuid';
 // import List from "../List/List"
 import Card from '../List/Card/Card';
 import axios from "axios";
+import BackLogo from '../../../assets/img/Back @2x.png';
+import BurgerBtn from '../../../assets/img/menu@2x.png';
+import { slide as Menu } from 'react-burger-menu'
 
 
 const Stores = () => {
@@ -90,7 +93,7 @@ const Stores = () => {
         </select>
       </div>
       <ul className="directoryList">
-        {stores.length > 0 ? stores
+        {stores ? stores
           .map((item, i) => <Card key={uuidv4()} index={i} value={item} />)
           : <h2>Loading...</h2>}</ul>
     </div >

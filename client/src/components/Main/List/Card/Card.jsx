@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Card(props) {
   console.log(props);
-  const info = props.data;
+  const info = props.value;
 
   return (
     <Link to={`/stores/details/${info.id}`} className="detailLink">
