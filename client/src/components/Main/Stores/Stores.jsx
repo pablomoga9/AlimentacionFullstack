@@ -33,12 +33,12 @@ const Stores = ()=>{
 
   return(
     <>
-      <h2>Stores</h2>
+      <h2>Comercios cerca de ti</h2>
       <Link to="/">Volver</Link>
       <input></input>
       
         {data?data.map((item,i)=>{
-          return <div>  
+          return <div key={i}>  
             <StoreCard data={item}/>
           </div>
             
