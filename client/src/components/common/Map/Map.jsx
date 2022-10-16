@@ -5,7 +5,7 @@ import 'leaflet/dist/leaflet.css';
 
 
 
-const Map = (porps) => {
+const Map = (props) => {
   // const long=props.long;
   // const lat=props.lat;
 
