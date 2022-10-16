@@ -15,7 +15,9 @@ function App() {
   const [userData, setUserData] = useState(null)//Hook para almacenar los datos del perfil de usuario
   const [stores, setStores] = useState(null);//Hook para almacenar el listado de tiendas
   const [storeDetails, setStoreDetails] = useState(null);//Hook para almacenar los detalles de una store
-  const [restaurantDetails,setRestaurantDetails] = useState(null);//Almacenar detalles de restaurants
+  const [restaurantDetails, setRestaurantDetails] = useState(null);//Almacenar detalles de restaurants
+  const [discounts, setDiscounts] = useState(null);//Hook con el listado de los descuentos
+
 
   console.log("userCheck ", userCheck);
 
@@ -80,12 +82,23 @@ function App() {
   //------------------------------------------------------------------
 
   //Obtener los detalles de un restaurante
-  const getRestaurantDetails = async(id)=>{
-    try{
+  const getRestaurantDetails = async (id) => {
+    try {
       const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
       setRestaurantDetails(res.data);
     }
-    catch(error){
+    catch (error) {
+      console.log(error);
+    }
+  }
+
+  //Obtener los descuentos
+  const getDiscounts = async (id) => {
+    try {
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      console.log(res);
+      setDiscounts(res.data)
+    } catch (error) {
       console.log(error);
     }
   }
@@ -106,7 +119,10 @@ function App() {
     setStoreDetails,
     restaurantDetails,
     setRestaurantDetails,
-    getRestaurantDetails
+    getRestaurantDetails,
+    discounts,
+    setDiscounts,
+    getDiscounts
   }
 
 
