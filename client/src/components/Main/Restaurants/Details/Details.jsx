@@ -2,6 +2,7 @@ import React, { useEffect,useContext } from "react";
 import {useParams} from 'react-router-dom';
 import { checkUserContext } from "../../../../context/checkUserContext"
 import Reserva from "../../../common/Reserva/Reserva";
+import Review from "../../../common/Review/Review";
 
 function Details(){
   const params = useParams();
@@ -18,8 +19,9 @@ function Details(){
     <>
       <h1>{restaurantDetails?restaurantDetails.name:"..."}</h1>{restaurantDetails?<img src={restaurantDetails.image}></img>:"Loading"}
       {restaurantDetails?<p>{restaurantDetails.status}</p>:"..."}
-      {restaurantDetails?<ul>{restaurantDetails.episode.slice(0, 5).map((item, i) => <li>{item}</li>)}</ul>:"Loading..."}
-      <Reserva/>
+      {restaurantDetails?<ul>{restaurantDetails.episode.slice(0, 5).map((item, i) => <li key={i}>{item}</li>)}</ul>:"Loading..."}
+      <Review data={restaurantDetails?restaurantDetails.name:""}/>
+      <Reserva data={restaurantDetails?restaurantDetails.name:""}/>
     </>
   )
 }

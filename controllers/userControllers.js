@@ -116,6 +116,24 @@ const saveBooking = async(req,res)=>{
     }
 }
 
+const createReview = async(req,res)=>{
+    try{
+        res.status(200).json({msg:req.body});
+    }
+    catch(error){   
+        res.status(400).json({msg:error.stack})
+    }
+}
+
+const getReviews = async(req,res)=>{
+    try{
+
+    }
+    catch(error){
+        res.status(400).json({msg:error.stack})
+    }
+}
+
 
 const logoutUser = async (req, res) => {
     try {
@@ -142,5 +160,7 @@ module.exports = {
     loginUser,
     checkUser,
     logoutUser,
-    saveBooking
+    saveBooking,
+    createReview,
+    getReviews
 }
