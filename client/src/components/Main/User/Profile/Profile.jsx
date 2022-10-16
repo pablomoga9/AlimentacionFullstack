@@ -1,4 +1,4 @@
-import { checkUserContext } from '../../../../context/checkUserContext'
+import { checkUserContext } from '../../../../context/checkUserContext';
 import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 

@@ -43,7 +43,7 @@ const Restaurants = () => {
     <div className="listContainer" >
 
       <div className="backButton">
-        <Link to="/"><img src={BackLogo} alt="" /></Link>
+        <Link to="/home"><img src={BackLogo} alt="" /></Link>
       </div>
       <div className="storesTitleContainer">
         <h2 className="storesTitle">Restaurantes cerca de ti</h2>

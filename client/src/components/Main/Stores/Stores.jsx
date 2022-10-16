@@ -80,7 +80,7 @@ const Stores = () => {
   return (
     <div className="listContainer" >
       <div className="backButton">
-        <Link to="/"><img src={BackLogo} alt="" /></Link>
+        <Link to="/home"><img src={BackLogo} alt="" /></Link>
       </div>
       <div className="storesTitleContainer">
         <h2 className="storesTitle">Comercios cerca de ti</h2>
@@ -90,12 +90,14 @@ const Stores = () => {
         <select className="sortList" onChange={handleChange}>
           <option value="rating">Mejor valoradas</option>
           <option value="closest">Más cercanas</option>
+          <option value="byName">Por nombre</option>
         </select>
       </div>
       <ul className="directoryList">
         {stores ? stores
-          .map((item, i) => <Card key={uuidv4()} index={i} value={item} />)
-          : <h2>Loading...</h2>}</ul>
+          .map((item, i) => <li key={uuidv4()} index={i}><Card  value={item} /></li>)
+          : <h2>Loading...</h2>}
+      </ul>
     </div >
   )
 };

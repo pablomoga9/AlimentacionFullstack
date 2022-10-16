@@ -15,7 +15,7 @@ function App() {
   const [userData, setUserData] = useState(null)//Hook para almacenar los datos del perfil de usuario
   const [stores, setStores] = useState(null);//Hook para almacenar el listado de tiendas
   const [storeDetails, setStoreDetails] = useState(null);//Hook para almacenar los detalles de una store
-
+  const [restaurantDetails,setRestaurantDetails] = useState(null);//Almacenar detalles de restaurants
 
   console.log("userCheck ", userCheck);
 
@@ -79,6 +79,17 @@ function App() {
   }
   //------------------------------------------------------------------
 
+  //Obtener los detalles de un restaurante
+  const getRestaurantDetails = async(id)=>{
+    try{
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      setRestaurantDetails(res.data);
+    }
+    catch(error){
+      console.log(error);
+    }
+  }
+
 
   const data = {
     userDetails,
@@ -92,7 +103,10 @@ function App() {
     getStores,
     getStoreDetails,
     storeDetails,
-    setStoreDetails
+    setStoreDetails,
+    restaurantDetails,
+    setRestaurantDetails,
+    getRestaurantDetails
   }
 
 
