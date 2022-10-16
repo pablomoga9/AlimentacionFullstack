@@ -17,6 +17,9 @@ function App() {
   const [storeDetails, setStoreDetails] = useState(null);//Hook para almacenar los detalles de una store
   const [restaurantDetails, setRestaurantDetails] = useState(null);//Almacenar detalles de restaurants
   const [discounts, setDiscounts] = useState(null);//Hook con el listado de los descuentos
+  const [recommendations, setRecommendations] = useState(null);//Hook con el listado de recomendaciones
+  const [favorites, setFavorites] = useState(null);//Hook con el listado de Favoritos
+
 
 
   console.log("userCheck ", userCheck);
@@ -103,6 +106,28 @@ function App() {
     }
   }
 
+  //Obtener las recomendaciones
+  const getRecommendations = async (id) => {
+    try {
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      console.log(res);
+      setRecommendations(res.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  //Obtener los favoritos
+  const getFavorites = async (id) => {
+    try {
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      console.log(res);
+      setFavorites(res.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   const data = {
     userDetails,
@@ -122,7 +147,14 @@ function App() {
     getRestaurantDetails,
     discounts,
     setDiscounts,
-    getDiscounts
+    getDiscounts,
+    getRecommendations,
+    recommendations,
+    setRecommendations,
+    favorites,
+    setFavorites,
+    getFavorites
+
   }
 
 
