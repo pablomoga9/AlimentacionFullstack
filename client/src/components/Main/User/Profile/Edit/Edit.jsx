@@ -11,7 +11,7 @@ const Edit = () => {
   const { userCheck } = useContext(checkUserContext);//Hook para obtener el email del usuario logado
   const { userData, setUserData } = useContext(checkUserContext)//Hook para guardar los datos del perfil de usuario
   const { userDetails } = useContext(checkUserContext);
-  const checkList = ["service_loca", "service_recogida", "service_reparto", "ambiente_dia", "ambiente_noche", "pet_friendly", "LGTBI_friendly", "slow_food", "healthy", "fresco", "de_temporada", "sostenible", "organico", "eco", "bio", "de_proximidad", "vegetariano", "vegano"];//CheckList services
+  const checkList = ["service_local", "service_recogida", "service_reparto", "ambiente_dia", "ambiente_noche", "pet_friendly", "LGTBI_friendly", "slow_food", "healthy", "fresco", "de_temporada", "sostenible", "organico", "eco", "bio", "de_proximidad", "vegetariano", "vegano"];//CheckList services
   const [checked, setChecked] = useState({});//Estado para ver cuantos check hay marcados
 
   useEffect(() => {
@@ -87,11 +87,6 @@ const Edit = () => {
             </article>
           ))
           }
-          <div>
-            <input type="checkbox" id="" name='servicio_local'
-              {...register("servicio_local", { minLength: { value: 1, message: "." } })} />
-            Servicio local
-          </div>
           <div>
             <button type="submit">Edit profile</button>
           </div>
