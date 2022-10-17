@@ -3,7 +3,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Recommendations from '../Recommendations/Recommendations';
 import Favorites from "../favorites/favorites"
-import Discounts from "../../../common/Discounts/Discounts"
+import Discounts from "../../../common/Discounts/Discounts";
+import Card from '../../List/Card/Card';
 
 const Profile = () => {
   const navigate = useNavigate();

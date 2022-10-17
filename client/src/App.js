@@ -8,6 +8,7 @@ import Footer from './components/Footer/Footer';
 import { checkUserContext } from './context/checkUserContext';
 import '../src/styles/styles.scss';
 import jwtDecode from 'jwt-decode';
+import Restaurants from "./components/Main/Restaurants/Restaurants";
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
   const [discounts, setDiscounts] = useState(null);//Hook con el listado de los descuentos
   const [recommendations, setRecommendations] = useState(null);//Hook con el listado de recomendaciones
   const [favorites, setFavorites] = useState(null);//Hook con el listado de Favoritos
-
+  const [restaurants,setRestaurants] = useState(null)
 
 
   console.log("userCheck ", userCheck);
@@ -65,10 +66,20 @@ function App() {
       console.log("Estas en getStoresSortBy");
 
       const res = await axios.get('https://rickandmortyapi.com/api/character');
-      setStores(res.data.results.slice(0, 5));
+      setStores(res.data.results.slice(0, 10));
     }
     catch (error) {
       console.log(error);
+    }
+  }
+
+  const getRestaurants = async()=>{
+    try{
+      const res = await axios.get('https://rickandmortyapi.com/api/character');
+      setRestaurants(res.data.results.slice(0,10));
+    }
+    catch(error){
+      console.log(error)
     }
   }
 
@@ -153,7 +164,10 @@ function App() {
     setRecommendations,
     favorites,
     setFavorites,
-    getFavorites
+    getFavorites,
+    getRestaurants,
+    restaurants,
+    setRestaurants
 
   }
 

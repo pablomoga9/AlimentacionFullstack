@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 
 function Card(props) {
-  console.log(props);
   const info = props.value;
 
   return (

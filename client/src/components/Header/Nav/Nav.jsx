@@ -3,7 +3,11 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { checkUserContext } from '../../../context/checkUserContext'
+import { checkUserContext } from '../../../context/checkUserContext';
+import BackLogo from '../../../assets/img/Back @2x.png';
+import BurgerBtn from '../../../assets/img/menu@2x.png';
+import SideBar from "./sidebar";
+
 function Nav() {
   const { userCheck, setUserCheck } = useContext(checkUserContext);
   const [clicked, setClicked] = useState(false);

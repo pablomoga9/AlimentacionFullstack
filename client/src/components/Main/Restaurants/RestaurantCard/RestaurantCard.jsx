@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 const RestaurantCard = (props) => {
   const info = props.data;
 
+
+  console.log(info);
   return (
     <Link to={`/restaurants/details/${info.id}`} className="detailLink">
       <div className="cardContainer">

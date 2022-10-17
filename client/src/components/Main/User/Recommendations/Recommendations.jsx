@@ -2,7 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import { checkUserContext } from "../../../../context/checkUserContext";
 import MiniCard from "../../../common/Discounts/MiniCard/MiniCard";
 import { v4 as uuidv4 } from 'uuid';
-
+import {Swiper,SwiperSlide} from 'swiper/react';
+import {FreeMode} from 'swiper';
+import 'swiper/css';
+import "swiper/css/free-mode";
+import { Link } from "react-router-dom";
 
 //Tendra que recibir algun parametro para indicarle la id del comercio a buscar
 const Recommendations = (props) => {
@@ -24,6 +28,18 @@ const Recommendations = (props) => {
       {recommendations ? recommendations.episode.slice(0, 5)
         .map((item, i) => <MiniCard key={uuidv4()} index={i} value={item} />)
         : "Loading..."}
+        {/* <Swiper freeMode={true}
+                grabCursor={true}
+                modules={[FreeMode]}
+                className='recommendationCarousel'
+                slidesPerView={2}
+                spaceBetween={30}>
+                {recommendations?recommendations.map((item,i)=>{
+                  return <SwiperSlide key={i}><MiniCard value={item}/></SwiperSlide>
+                })
+                :null}
+                
+        </Swiper> */}
     </section>
   </>)
 };
