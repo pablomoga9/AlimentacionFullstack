@@ -63,35 +63,55 @@ const SignUp = () => {
         {/* Primera parte del formulario */}
         {part1 ?
           <fieldset>
-            <div>
+            {/* <div>
               <label htmlFor="">Nombre</label>
-              <input type="text"{
-                ...register('nombre', {
-                  required: true,
-                  minLength: 3
+              <input type="text"
+                {...register('nombre', {
+                  required: {
+                    value: true,
+                    message: "Por favor introduce un Nombre válido"
+                  },
+                  pattern: {
+                    value: /^[A-Za-z]+$/i,
+                    message: "El formato no es correcto"
+                  }
                 })
-              } />
+                } />
               {errors.nombre?.type === 'required' && <p>Por favor introduzca su nombre</p>}
+              {errors.nombre?.type === 'pattern' && <p>Por favor introduzca un nombre válido</p>}
+
             </div>
             <div>
               <label htmlFor="">Email</label>
-              <input type="email"{
-                ...register('email', {
-                  required: true,
-                  minLength: 3
+              <input type="email"
+                {...register('email', {
+                  required: {
+                    value: true,
+                    message: "Por favor introduce un Email válido"
+                  },
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: "El formato no es correcto"
+                  }
                 })
-              } />
-              {errors.email?.type === 'required' && <p>El campo 'Email' es requerido</p>}
+                } />
+              {errors.email?.type === 'required' && <p>{errors.email.message}Por favor introduce un Email válido</p>}
             </div>
             <div>
               <label htmlFor="">Password</label>
               <input type="password"{
                 ...register('password', {
-                  required: true,
-                  minLength: 3
-                })
-              } />
-              {errors.email?.type === 'required' && <p>El campo 'Contraseña' es requerido</p>}
+                  required: {
+                    value: true,
+                    message: "El campo es requerido"
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "La contraseña debe tener al menos 6 caracteres"
+                  }
+                })} />
+              {errors.password?.type === 'required' && <p>{errors.password.message}Por favor, introduce una contraseña válida</p>}
+              {errors.password?.type === 'minLength' && <p>La contraseña debe de tener mínimo 8 caracteres</p>}
             </div>
             <div>
               <label>Deseo recibir en mi mail ofertas, descuentos y promociones de Kmon</label>
@@ -109,7 +129,7 @@ const SignUp = () => {
               />
               {errors.terms?.type === 'required' && <p>Tienes que aceptar los términos y condiciones para poder formar parte de nuestra comnunidad</p>}
 
-            </div>
+            </div> */}
           </fieldset>
           : null}
 
@@ -118,6 +138,35 @@ const SignUp = () => {
           <div>
             <h2>Preferencias</h2>
             <div><p>En una escala de 1-5 (Muy poco-Mucho)¿Qué importancia otorgarías a cada uno de estos conceptos a la hora deconsumir alimentos?</p></div>
+
+
+
+            <div>
+              <label>
+                <span >
+                  Correo
+                </span>
+              </label>
+              <input
+                type="text"
+                autoComplete="off"
+                name="email3"
+
+                placeholder="ejemplo@gmail.com"
+                {...register("email3", {
+                  required: { value: true },
+                  pattern: {
+                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                    message: "El formato no es correcto"
+                  }
+                })}
+              />
+              {errors.email3 && <span><p>Error</p></span>}
+            </div>
+
+
+
+
 
 
             <fieldset>
