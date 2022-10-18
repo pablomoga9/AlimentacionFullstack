@@ -7,7 +7,7 @@ import Restaurants from './Restaurants/Restaurants'
 import Stores from './Stores/Stores';
 import Profile from './User/Profile'
 import Edit from './User/Profile/Edit/Edit';
-import Details from "./Stores/Details/Details"
+import Details from "./Details/Details"
 import RestaurantDetails from './Restaurants/Details/Details';
 
 function Main() {
@@ -22,7 +22,7 @@ function Main() {
         <Route element={<Profile />} path={"/user/profile"} />
         <Route element={<Edit />} path={"/user/profile/edit"} />
         <Route element={<Details />} path={"/stores/details/:id"} />
-        <Route element={<RestaurantDetails/>} path={'/restaurants/details/:id'}/>
+        <Route element={<RestaurantDetails />} path={'/restaurants/details/:id'} />
       </Routes>
     </main>
   )

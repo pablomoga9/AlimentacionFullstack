@@ -106,31 +106,59 @@ const loginUser = async (req, res) => {
     }
 }
 
-const saveBooking = async(req,res)=>{
-    try{
+const saveBooking = async (req, res) => {
+    try {
         console.log(req.body);
-        res.status(200).json({msg:req.body});
+        res.status(200).json({ msg: req.body });
     }
-    catch(error){
-        res.status(400).json({msg:error.stack})
-    }
-}
-
-const createReview = async(req,res)=>{
-    try{
-        res.status(200).json({msg:req.body});
-    }
-    catch(error){   
-        res.status(400).json({msg:error.stack})
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
     }
 }
 
-const getReviews = async(req,res)=>{
-    try{
+const createReview = async (req, res) => {
+    try {
+        res.status(200).json({ msg: req.body });
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+//Obtener todos los restaurantes
+const getRestaurants = async (req, res) => {
+    if (req.query.id) {
+        console.log("req query", req.query);
+        try {
+            const restaurant = await userModels.getRestaurantById(req.query.id);
+            res.status(200).json(restaurant);
+            console.log(restaurant, restaurant.length);
+
+        } catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "landing not found" });
+        }
+    } else {
+        // all restaurants
+        try {
+            const resturants = await userModels.getRestaurants();
+            res.status(200).json(resturants);
+            console.log("All resturants", resturants.length);
+
+        }
+        catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "Restaurants not found" });
+        }
+    }
+}
+
+const getReviews = async (req, res) => {
+    try {
 
     }
-    catch(error){
-        res.status(400).json({msg:error.stack})
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
     }
 }
 
@@ -162,5 +190,6 @@ module.exports = {
     logoutUser,
     saveBooking,
     createReview,
-    getReviews
+    getReviews,
+    getRestaurants
 }

@@ -6,8 +6,8 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import Logo from "../../common/Logo"
 import { Link, useNavigate } from "react-router-dom";
-import {Swiper,SwiperSlide} from 'swiper/react';
-import {FreeMode} from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from 'swiper';
 import 'swiper/css';
 import "swiper/css/free-mode";
 import Card from '../List/Card/Card';
@@ -26,6 +26,7 @@ const Home = () => {
   const {restaurants,setRestaurants} = useContext(checkUserContext);
   const {showNav,setShowNav} = useContext(checkUserContext);
 
+
   useEffect(() => {
     setShowNav(true);
     checkUser()
@@ -35,10 +36,12 @@ const Home = () => {
     //   navigate("/");
     // }
   }, []);
- 
+
 
   return (
     <>
+
+  {/* Dar funcion a este input */}
           <div className='searchContainer'>
             <button type='submit'><img src={Lupa} alt="" /></button>
             <input name='search' type="text" placeholder='Búsqueda...'/>
@@ -81,6 +84,7 @@ const Home = () => {
             className='homeDirectory'
             slidesPerView={2}
             spaceBetween={30}>
+             {/* creat estado con un array de saber+ */}
             {stores?stores.map((item,i)=>{
               return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
             })
@@ -89,9 +93,10 @@ const Home = () => {
           </Swiper>
                 </div>
         {/* <div className='storesDirectory'>
+
           <Link className='imgContainer' to={'/stores/'}><img className='storeImg' src="https://revista.storyous.es/wp-content/uploads/sites/2/2018/05/mamacampo3.jpg" alt="" /><h3 className='directoryTitle'>Tiendas</h3></Link>
         </div> */}
-     
+
       {/* <div className='novedades'>
         <h1>NOVEDADES</h1>
       </div>

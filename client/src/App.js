@@ -15,13 +15,15 @@ function App() {
   const [userCheck, setUserCheck] = useState(null);
   const [userData, setUserData] = useState(null)//Hook para almacenar los datos del perfil de usuario
   const [stores, setStores] = useState(null);//Hook para almacenar el listado de tiendas
-  const [storeDetails, setStoreDetails] = useState(null);//Hook para almacenar los detalles de una store
+  const [details, setDetails] = useState(null);//Hook para almacenar los detalles de una store
   const [restaurantDetails, setRestaurantDetails] = useState(null);//Almacenar detalles de restaurants
   const [discounts, setDiscounts] = useState(null);//Hook con el listado de los descuentos
   const [recommendations, setRecommendations] = useState(null);//Hook con el listado de recomendaciones
   const [favorites, setFavorites] = useState(null);//Hook con el listado de Favoritos
-  const [restaurants,setRestaurants] = useState(null)
   const [showNav,setShowNav] = useState(null);
+  const [restaurants, setRestaurants] = useState(null)
+
+
 
   console.log("userCheck ", userCheck);
 
@@ -73,22 +75,32 @@ function App() {
     }
   }
 
-  const getRestaurants = async()=>{
-    try{
-      const res = await axios.get('https://rickandmortyapi.com/api/character');
-      setRestaurants(res.data.results.slice(0,10));
+  const getRestaurants = async () => {
+    try {
+      // const res = await axios.get('https://rickandmortyapi.com/api/character');
+      const res = await axios.get('http://localhost:5000/api/restaurant');
+      setRestaurants(res.data.slice(0, 10));
+
+      // setRestaurants(res.data.results);
     }
-    catch(error){
+    catch (error) {
       console.log(error)
     }
   }
+  console.log(restaurants);
 
   //Obtener los detalles de una store
-  const getStoreDetails = async (id) => {
+  const getDetails = async (id) => {
     try {
-      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
-      console.log(res);
-      setStoreDetails(res.data)
+      // const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      // console.log(res);
+      // setStoreDetails(res.data)
+
+
+      const res = await axios.get(`http://localhost:5000/api/restaurant/?id=${id}`);
+      console.log(...res.data);
+      setDetails(...res.data)
+
     } catch (error) {
       console.log(error);
     }
@@ -150,9 +162,9 @@ function App() {
     stores,
     setStores,
     getStores,
-    getStoreDetails,
-    storeDetails,
-    setStoreDetails,
+    getDetails,
+    details,
+    setDetails,
     restaurantDetails,
     setRestaurantDetails,
     getRestaurantDetails,
