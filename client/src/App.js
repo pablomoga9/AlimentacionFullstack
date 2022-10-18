@@ -15,7 +15,7 @@ function App() {
   const [userCheck, setUserCheck] = useState(null);
   const [userData, setUserData] = useState(null)//Hook para almacenar los datos del perfil de usuario
   const [stores, setStores] = useState(null);//Hook para almacenar el listado de tiendas
-  const [storeDetails, setStoreDetails] = useState(null);//Hook para almacenar los detalles de una store
+  const [details, setDetails] = useState(null);//Hook para almacenar los detalles de una store
   const [restaurantDetails, setRestaurantDetails] = useState(null);//Almacenar detalles de restaurants
   const [discounts, setDiscounts] = useState(null);//Hook con el listado de los descuentos
   const [recommendations, setRecommendations] = useState(null);//Hook con el listado de recomendaciones
@@ -97,7 +97,7 @@ function App() {
 
       const res = await axios.get(`http://localhost:5000/api/restaurant/?id=${id}`);
       console.log(...res.data);
-      setStoreDetails(...res.data)
+      setDetails(...res.data)
 
     } catch (error) {
       console.log(error);
@@ -161,8 +161,8 @@ function App() {
     setStores,
     getStores,
     getDetails,
-    storeDetails,
-    setStoreDetails,
+    details,
+    setDetails,
     restaurantDetails,
     setRestaurantDetails,
     getRestaurantDetails,

@@ -37,10 +37,8 @@ const Map = (props) => {
         // Meter posicion obtenida por props
         position={[lat, long]}
         icon={icon}>
-        <Popup>Detalles:
-          <ul>
-            <li>Nombre:</li>
-          </ul>
+        <Popup>
+          <h1>{props.name}</h1>
         </Popup>
       </Marker>
 
