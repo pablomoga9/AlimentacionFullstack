@@ -1,0 +1,139 @@
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content:center;
+    .full-input {
+        display: inline-block;
+        padding: 3px;
+        background: #E9F5ED;
+        border: 2px solid #144E24;
+        margin-bottom: 5px;
+        width: 80%;
+        margin-top: 30px;
+      }
+      .full-input:hover{
+        display: inline-block;
+        padding: 3px;
+        background: #c7ffdb;
+        border: 2px solid #144E24;
+        margin-bottom: 5px;
+        width: 80%;
+        margin-top: 30px;
+      }
+    input[type=text], input[type=password]{
+       
+        background: none;
+        padding: 4px 8px 4px 8px;
+        gap: 24px;
+        display:block;
+        line-height: 1.2em;
+        font-size: 14pt;
+        outline: none;
+        border: none;
+        display:block;
+    }
+
+   
+    input[type=submit]{
+        border-radius: 8px;
+        border: none;
+        padding: 16px 24px 16px 24px;
+        gap: 24px;
+        background: #E8AF43;
+        // display:block;
+        // line-height: 1.2em;
+        // font-size: 14pt;
+        cursor: pointer;
+        margin-top: 40px;
+        margin-bottom: 20px;
+    }
+    input[type=submit]:hover{
+        background: #ffc65c;
+    }
+    label{
+        display: block;
+        font-size: 15px;
+        color:#000000;
+        text-align: start;
+        margin-left: 4px;
+    }
+}
+
+
+.searchContainer{
+    display: flex;
+    padding: 4px 0px 4px 4px;
+    background: #F7F9F9;
+    border: 1px solid #1F7C3A;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    width: 70%;
+    margin-left:30px;
+    gap: 8px;
+    input[type=text]{
+        background: none;
+        padding: 4px 8px 4px 8px;
+        gap: 24px;
+        display:block;
+        line-height: 1.2em;
+        font-size: 14pt;
+        outline: none;
+        border: none;
+        display:block; 
+    }
+    button{
+        display: block;
+        width:10%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        img{
+            width: 120%;
+        }
+    }
+}
+
+.carouselTitle{
+    font-size: 30px;
+    text-align: start;
+    margin-left:30px ;
+}
+
+.searchContainer:hover{
+    background: #dbffe2;
+}
+
+.titleLogin{
+    background: #48773E;
+    padding: 8px;
+    border-radius: 8px;
+    gap: 24px;
+    width: 80%;
+   margin: auto;
+}
+
+a{
+    text-decoration: none;
+}
+
+.logoHeader{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    .logoTextHeader{
+        display: flex;
+        flex-direction: row;
+        font-family: 'Fredoka One', cursive;
+        // font-weight: bold;
+        font-size: 103px;
+        color:#1F7C3A;
+        align-items: center;
+        justify-content: center;
+    }
+    .logoImgHeader{
+        width: 20%;
+        height: 50%;
+    }
+}
+

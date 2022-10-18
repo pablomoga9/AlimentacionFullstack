@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from 'react-router-dom';
-
+import LogoCircle from '../../../assets/img/logoC.png'
 
 const Logo = () => {
   return (
     <div>
-      <Link to={"/home"}><img style={{ width: "200px" }} src="https://cdn.pixabay.com/photo/2016/12/17/18/12/logo-1914020_1280.png" alt="Logo" />
+      <Link to={"/home"}><div className="logoHeader"><h1 className="logoTextHeader">K'm<img className="logoImgHeader" src={LogoCircle}></img>n</h1></div>
       </Link>
     </div>
   );

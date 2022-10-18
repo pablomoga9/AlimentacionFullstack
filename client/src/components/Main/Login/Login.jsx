@@ -8,6 +8,7 @@ import jwtDecode from 'jwt-decode';
 import { checkUserContext } from '../../../context/checkUserContext';
 import Logo from '../../common/Logo';
 
+
 const Login = () => {
   const { register, formState: { errors }, handleSubmit } = useForm();
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ const Login = () => {
   const { userDetails } = useContext(checkUserContext);
   const { checkUser } = useContext(checkUserContext);
   const [time,setTime] = useState(false);
+  const {showNav,setShowNav} = useContext(checkUserContext);
 
   useEffect(() => {
     if(userCheck===null){
@@ -23,13 +25,16 @@ const Login = () => {
     else{
       setTime(true);
     }
-
+    setShowNav(false);
+    
     if(time===false){
       const timeout = setTimeout(()=>{
        setTime(true)
       },2000);
       return ()=>clearTimeout(timeout)
     }
+
+
   }, [])
 
 
@@ -59,25 +64,30 @@ const Login = () => {
 
   return (
     <>
-     {time===false?<div><h1 className="logoText">K'm<img className="logoImg" src={LogoCircle}></img>on</h1></div>:<div>
-     <Logo />
+     {time===false?<Logo/>:<div>
+     
       <div>
-        {userCheck == null ? <h3>Inicia sesión</h3> : <h3>Has iniciado sesión como: </h3>}
-        {userCheck == null ? <form onSubmit={handleSubmit(onSubmit)}>
-          <label htmlFor="">Email:</label>
-          <input type="text"{
-            ...register('email', {
-              required: true,
-              minLength: 3
-            })
-          } />{errors.email?.type === 'required' && <p>El campo 'Email' es requerido</p>}
-          <label htmlFor="">Contraseña:</label>
-          <input type="password"{
-            ...register('password', {
-              required: true,
-              minLength: 3
-            })
-          } />{errors.email?.type === 'required' && <p>El campo 'Contraseña' es requerido</p>}
+        <Logo/>
+        {userCheck == null ? <h3 className="titleLogin">Bienvenido</h3> : <h3>Has iniciado sesión como: </h3>}
+        {userCheck == null ? <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+          <div className="full-input">
+            <label htmlFor="email">Email:</label>
+            <input name="email" type="text"{
+              ...register('email', {
+                required: true,
+                minLength: 3
+              })
+            } />{errors.email?.type === 'required' && <p>El campo 'Email' es requerido</p>}
+          </div>
+          <div className="full-input">
+            <label htmlFor="password">Contraseña:</label>
+            <input name="password" type="password"{
+              ...register('password', {
+                required: true,
+                minLength: 3
+              })
+            } />{errors.email?.type === 'required' && <p>El campo 'Contraseña' es requerido</p>}
+          </div>
           <input type="submit" value="Login" />
         </form> : userCheck}
       </div>

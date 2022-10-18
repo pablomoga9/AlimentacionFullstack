@@ -11,6 +11,7 @@ import {FreeMode} from 'swiper';
 import 'swiper/css';
 import "swiper/css/free-mode";
 import Card from '../List/Card/Card';
+import Lupa from '../../../assets/img/lupa.png'
 
 // import Scanner from './Scanner/Scanner';
 
@@ -23,8 +24,10 @@ const Home = () => {
   const navigate = useNavigate();
   const { stores, setStores } = useContext(checkUserContext);
   const {restaurants,setRestaurants} = useContext(checkUserContext);
+  const {showNav,setShowNav} = useContext(checkUserContext);
 
   useEffect(() => {
+    setShowNav(true);
     checkUser()
     getStores()
     getRestaurants();
@@ -36,11 +39,13 @@ const Home = () => {
 
   return (
     <>
-      <Logo />
-        <input type="text" />
+          <div className='searchContainer'>
+            <button type='submit'><img src={Lupa} alt="" /></button>
+            <input name='search' type="text" placeholder='Búsqueda...'/>
+          </div>
+          <h2 className='carouselTitle'>Restaurantes</h2>
           <div className='carouselHome'>
-              <h2>Restaurantes</h2>
-              <Swiper freeMode={true}
+             <Swiper freeMode={true}
                 grabCursor={true}
                 modules={[FreeMode]}
                 className='homeDirectory'
@@ -53,8 +58,8 @@ const Home = () => {
                 <SwiperSlide><Link to="/restaurants">Ver más</Link></SwiperSlide>
               </Swiper>
           </div>
+              <h2 className='carouselTitle'>Tiendas</h2>
               <div className='carouselHome'>
-                <h2>Tiendas</h2>
                 <Swiper freeMode={true}
                   grabCursor={true}
                   modules={[FreeMode]}
@@ -68,9 +73,9 @@ const Home = () => {
                   <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
                 </Swiper>
               </div>
+               <h2 className='carouselTitle'>Saber+</h2>
                 <div>
-                     <h2>Saber+</h2>
-            <Swiper freeMode={true}
+                     <Swiper freeMode={true}
             grabCursor={true}
             modules={[FreeMode]}
             className='homeDirectory'
