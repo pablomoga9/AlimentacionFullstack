@@ -20,7 +20,9 @@ function App() {
   const [discounts, setDiscounts] = useState(null);//Hook con el listado de los descuentos
   const [recommendations, setRecommendations] = useState(null);//Hook con el listado de recomendaciones
   const [favorites, setFavorites] = useState(null);//Hook con el listado de Favoritos
+  const [showNav,setShowNav] = useState(null);
   const [restaurants, setRestaurants] = useState(null)
+
 
 
   console.log("userCheck ", userCheck);
@@ -177,8 +179,9 @@ function App() {
     getFavorites,
     getRestaurants,
     restaurants,
-    setRestaurants
-
+    setRestaurants,
+    showNav,
+    setShowNav
   }
 
 

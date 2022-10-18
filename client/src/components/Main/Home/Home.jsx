@@ -11,6 +11,7 @@ import { FreeMode } from 'swiper';
 import 'swiper/css';
 import "swiper/css/free-mode";
 import Card from '../List/Card/Card';
+import Lupa from '../../../assets/img/lupa.png'
 
 // import Scanner from './Scanner/Scanner';
 
@@ -22,9 +23,12 @@ const Home = () => {
   const { getRestaurants } = useContext(checkUserContext);
   const navigate = useNavigate();
   const { stores, setStores } = useContext(checkUserContext);
-  const { restaurants, setRestaurants } = useContext(checkUserContext);
+  const {restaurants,setRestaurants} = useContext(checkUserContext);
+  const {showNav,setShowNav} = useContext(checkUserContext);
+
 
   useEffect(() => {
+    setShowNav(true);
     checkUser()
     getStores()
     getRestaurants();
@@ -36,68 +40,60 @@ const Home = () => {
 
   return (
     <>
-      <Logo />
-      {/* Dar funcion a este input */}
-      <input type="text" />
 
+  {/* Dar funcion a este input */}
+          <div className='searchContainer'>
+            <button type='submit'><img src={Lupa} alt="" /></button>
+            <input name='search' type="text" placeholder='Búsqueda...'/>
+          </div>
+          <h2 className='carouselTitle'>Restaurantes</h2>
+          <div className='carouselHome'>
+             <Swiper freeMode={true}
+                grabCursor={true}
+                modules={[FreeMode]}
+                className='homeDirectory'
+                slidesPerView={2}
+                spaceBetween={30}>
+                {restaurants?restaurants.map((item,i)=>{
+                  return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
+                })
+                :null}
+                <SwiperSlide><Link to="/restaurants">Ver más</Link></SwiperSlide>
+              </Swiper>
+          </div>
+              <h2 className='carouselTitle'>Tiendas</h2>
+              <div className='carouselHome'>
+                <Swiper freeMode={true}
+                  grabCursor={true}
+                  modules={[FreeMode]}
+                  className='homeDirectory'
+                  slidesPerView={2}
+                  spaceBetween={30}>
+                  {stores?stores.map((item,i)=>{
+                    return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
+                  })
+                  :null}
+                  <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
+                </Swiper>
+              </div>
+               <h2 className='carouselTitle'>Saber+</h2>
+                <div>
+                     <Swiper freeMode={true}
+            grabCursor={true}
+            modules={[FreeMode]}
+            className='homeDirectory'
+            slidesPerView={2}
+            spaceBetween={30}>
+             {/* creat estado con un array de saber+ */}
+            {stores?stores.map((item,i)=>{
+              return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
+            })
+            :null}
+            <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
+          </Swiper>
+                </div>
+        {/* <div className='storesDirectory'>
 
-      <div className='carouselHome'>
-        <h2>Restaurantes</h2>
-        <Swiper
-          freeMode={true}
-          grabCursor={true}
-          modules={[FreeMode]}
-          className='homeDirectory'
-          slidesPerView={2}
-          spaceBetween={30}>
-          {restaurants ? restaurants.map((item, i) => {
-            return <SwiperSlide key={i}><Card value={item} /></SwiperSlide>
-          })
-            : null}
-          <SwiperSlide><Link to="/restaurants">Ver más</Link></SwiperSlide>
-        </Swiper>
-      </div>
-
-
-      <div className='carouselHome'>
-        <h2>Tiendas</h2>
-        <Swiper
-          freeMode={true}
-          grabCursor={true}
-          modules={[FreeMode]}
-          className='homeDirectory'
-          slidesPerView={2}
-          spaceBetween={30}>
-          {stores ? stores.map((item, i) => {
-            return <SwiperSlide key={i}><Card value={item} /></SwiperSlide>
-          })
-            : null}
-          <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
-        </Swiper>
-      </div>
-
-
-      <div className='carouselHome'>
-        <h2>Saber+</h2>
-        <Swiper freeMode={true}
-          grabCursor={true}
-          modules={[FreeMode]}
-          className='homeDirectory'
-          slidesPerView={2}
-          spaceBetween={30}>
-          {/* creat estado con un array de saber+ */}
-          {stores ? stores.map((item, i) => {
-            return <SwiperSlide key={i}><Card value={item} /></SwiperSlide>
-          })
-            : null}
-          <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
-        </Swiper>
-      </div>
-
-
-
-
-      {/* <div className='storesDirectory'>
           <Link className='imgContainer' to={'/stores/'}><img className='storeImg' src="https://revista.storyous.es/wp-content/uploads/sites/2/2018/05/mamacampo3.jpg" alt="" /><h3 className='directoryTitle'>Tiendas</h3></Link>
         </div> */}
 
