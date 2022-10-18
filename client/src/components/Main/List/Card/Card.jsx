@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 function Card(props) {
   const info = props.value;
+  // console.log(info);
 
   return (
-    <Link to={`/stores/details/${info.id}`} className="detailLink">
+    <Link to={`/stores/details/${info.place_id}`} className="detailLink">
       <div className="cardContainer">
         <div className="cardText">
-          <h4 >{info.name}<p>$$</p></h4>
-          <h4 className="cardCity">{info.species}</h4>
+          <h4 >{info.place_name}</h4>
         </div>
-        <img src={info.image} alt="" />
+        <img src={info.thumbnail} alt="" />
       </div>
     </Link>
   )
