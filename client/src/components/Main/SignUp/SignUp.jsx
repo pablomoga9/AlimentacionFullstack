@@ -1,18 +1,21 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import { useForm } from 'react-hook-form';
+import { ErrorMessage } from '@hookform/error-message';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const { register, formState: { errors }, handleSubmit } = useForm();
+  const { register, watch, formState: { errors }, handleSubmit } = useForm();
+  const password = useRef({});//Para comprobar si las 2 contraseñas son iguales
+  password.current = watch("password", "");//Para comprobar si las 2 contraseñas son iguales
+
   const navigate = useNavigate();
-  // const checkList = ["service_local", "service_recogida", "service_reparto", "ambiente_dia", "ambiente_noche", "pet_friendly", "LGTBI_friendly", "slow_food", "healthy", "fresco", "de_temporada", "sostenible", "organico", "eco", "bio", "de_proximidad", "vegetariano", "vegano"];//CheckList services
-  // const [checked, setChecked] = useState({});//Estado para ver cuantos check hay marcados
   const [part1, setPart1] = useState(true);//Estado para mostrar o no la parte 1 del formulario
   const [part2, setPart2] = useState(false);//Estado para mostrar o no la parte 2 del formulario
   const [part3, setPart3] = useState(false);//Estado para mostrar o no la parte 3 del formulario
 
 
+  //Envio del formulario a la bbdd
   const onSubmit = async (form) => {
     try {
       console.log(form);
@@ -26,7 +29,7 @@ const SignUp = () => {
     }
   }
 
-
+  //"Paginar el formulario"
   const handleChangePart = (e) => {
     const value = e.target.value;
     console.log(value);
@@ -55,7 +58,8 @@ const SignUp = () => {
     }
 
   }
-  console.log(errors);
+
+
   return (
     <>
       {/* Primera parte del formulario */}
@@ -89,7 +93,7 @@ const SignUp = () => {
           </div>
           <div>
             <label htmlFor="">Email</label>
-            <input type="email"
+            <input type="text"
               name="email"
               id="email"
               {...register('email', {
@@ -129,6 +133,21 @@ const SignUp = () => {
             {errors.password ? <div>{errors.password.message}</div> : null}
           </div>
           <div>
+            <label>Repeat password</label>
+            <input
+              name="password_repeat"
+              id="password_repeat"
+              type="password"
+              {...register("password_repeat", {
+                validate: value =>
+                  value === password.current || "La contraseña no coincide"
+              })}
+            />
+            {errors.password_repeat && <p>{errors.password_repeat.message}</p>}
+
+          </div>
+
+          <div>
             <label>Deseo recibir en mi mail ofertas, descuentos y promociones de Kmon</label>
             <input {...register("promos")} type="radio" value="promos" />
           </div>
@@ -157,54 +176,54 @@ const SignUp = () => {
             <legend>Producto de temporada</legend>
             <label htmlFor="1">
               <input
-                {...register("ProductoTemporada", { required: true })}
+                {...register("productosTemporada", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
-                name="ProductoTemporada"
+                id="11"
+                name="productosTemporada"
               />
               1
             </label>
             <label htmlFor="2">
               <input
-                {...register("ProductoTemporada", { required: true })}
+                {...register("productosTemporada", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
-                name="ProductoTemporada"
+                id="12"
+                name="productosTemporada"
               />
               2
             </label>
             <label htmlFor="3">
               <input
-                {...register("ProductoTemporada", { required: true })}
+                {...register("productosTemporada", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
-                name="ProductoTemporada"
+                id="13"
+                name="productosTemporada"
               />
               3
             </label>
             <label htmlFor="4">
               <input
-                {...register("ProductoTemporada", { required: true })}
+                {...register("productosTemporada", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
-                name="ProductoTemporada"
+                id="14"
+                name="productosTemporada"
               />
               4
             </label>
             <label htmlFor="5">
               <input
-                {...register("ProductoTemporada", { required: true })}
+                {...register("productosTemporada", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
-                name="ProductoTemporada"
+                id="15"
+                name="productosTemporada"
               />
               5
-              {errors.ProductoTemporada && <p>Por favor, marca algún valor</p>}
+              {errors.productosTemporada && <p>Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -213,54 +232,54 @@ const SignUp = () => {
             <legend>Productos frescos</legend>
             <label htmlFor="1">
               <input
-                {...register("ProductoFresco", { required: true })}
+                {...register("productosFrescos", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
-                name="ProductoFresco"
+                id="21"
+                name="productosFrescos"
               />
               1
             </label>
             <label htmlFor="2">
               <input
-                {...register("ProductoFresco", { required: true })}
+                {...register("productosFrescos", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
-                name="ProductoFresco"
+                id="22"
+                name="productosFrescos"
               />
               2
             </label>
             <label htmlFor="3">
               <input
-                {...register("ProductoFresco", { required: true })}
+                {...register("productosFrescos", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
-                name="ProductoFresco"
+                id="23"
+                name="productosFrescos"
               />
               3
             </label>
             <label htmlFor="4">
               <input
-                {...register("ProductoFresco", { required: true })}
+                {...register("productosFrescos", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
-                name="ProductoFresco"
+                id="24"
+                name="productosFrescos"
               />
               4
             </label>
             <label htmlFor="5">
               <input
-                {...register("ProductoFresco", { required: true })}
+                {...register("productosFrescos", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
-                name="ProductoFresco"
+                id="25"
+                name="productosFrescos"
               />
               5
-              {errors.ProductoFresco && <p>Por favor, marca algún valor</p>}
+              {errors.productosFrescos && <p>Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -269,54 +288,54 @@ const SignUp = () => {
             <legend>Orgánico</legend>
             <label htmlFor="1">
               <input
-                {...register("Organico", { required: true })}
+                {...register("organico", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
-                name="Organico"
+                id="31"
+                name="organico"
               />
               1
             </label>
             <label htmlFor="2">
               <input
-                {...register("Organico", { required: true })}
+                {...register("organico", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
-                name="Organico"
+                id="32"
+                name="organico"
               />
               2
             </label>
             <label htmlFor="3">
               <input
-                {...register("Organico", { required: true })}
+                {...register("organico", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
-                name="Organico"
+                id="33"
+                name="organico"
               />
               3
             </label>
             <label htmlFor="4">
               <input
-                {...register("Organico", { required: true })}
+                {...register("organico", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
-                name="Organico"
+                id="34"
+                name="organico"
               />
               4
             </label>
             <label htmlFor="5">
               <input
-                {...register("Organico", { required: true })}
+                {...register("organico", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
-                name="Organico"
+                id="35"
+                name="organico"
               />
               5
-              {errors.Organico && <p>Por favor, marca algún valor</p>}
+              {errors.organico && <p>Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -328,7 +347,7 @@ const SignUp = () => {
                 {...register("saludable", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
+                id="41"
                 name="saludable"
               />
               1
@@ -338,7 +357,7 @@ const SignUp = () => {
                 {...register("saludable", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
+                id="42"
                 name="saludable"
               />
               2
@@ -348,7 +367,7 @@ const SignUp = () => {
                 {...register("saludable", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
+                id="43"
                 name="saludable"
               />
               3
@@ -358,7 +377,7 @@ const SignUp = () => {
                 {...register("saludable", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
+                id="44"
                 name="saludable"
               />
               4
@@ -368,67 +387,11 @@ const SignUp = () => {
                 {...register("saludable", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
+                id="45"
                 name="saludable"
               />
               5
               {errors.saludable && <p>Por favor, marca algún valor</p>}
-
-            </label>
-          </fieldset>
-
-          <fieldset>
-            <legend>Artesanal</legend>
-            <label htmlFor="1">
-              <input
-                {...register("artesanal", { required: true })}
-                type="radio"
-                value="1"
-                id="1"
-                name="artesanal"
-              />
-              1
-            </label>
-            <label htmlFor="2">
-              <input
-                {...register("artesanal", { required: true })}
-                type="radio"
-                value="2"
-                id="2"
-                name="artesanal"
-              />
-              2
-            </label>
-            <label htmlFor="3">
-              <input
-                {...register("artesanal", { required: true })}
-                type="radio"
-                value="3"
-                id="3"
-                name="artesanal"
-              />
-              3
-            </label>
-            <label htmlFor="4">
-              <input
-                {...register("artesanal", { required: true })}
-                type="radio"
-                value="4"
-                id="4"
-                name="artesanal"
-              />
-              4
-            </label>
-            <label htmlFor="5">
-              <input
-                {...register("artesanal", { required: true })}
-                type="radio"
-                value="5"
-                id="5"
-                name="artesanal"
-              />
-              5
-              {errors.artesanal && <p>Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -446,7 +409,7 @@ const SignUp = () => {
                 {...register("sostenible", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
+                id="51"
                 name="sostenible"
               />
               1
@@ -456,7 +419,7 @@ const SignUp = () => {
                 {...register("sostenible", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
+                id="52"
                 name="sostenible"
               />
               2
@@ -466,7 +429,7 @@ const SignUp = () => {
                 {...register("sostenible", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
+                id="53"
                 name="sostenible"
               />
               3
@@ -476,7 +439,7 @@ const SignUp = () => {
                 {...register("sostenible", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
+                id="54"
                 name="sostenible"
               />
               4
@@ -486,7 +449,7 @@ const SignUp = () => {
                 {...register("sostenible", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
+                id="55"
                 name="sostenible"
               />
               5
@@ -501,7 +464,7 @@ const SignUp = () => {
                 {...register("basura0", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
+                id="61"
                 name="basura0"
               />
               1
@@ -511,7 +474,7 @@ const SignUp = () => {
                 {...register("basura0", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
+                id="62"
                 name="basura0"
               />
               2
@@ -521,7 +484,7 @@ const SignUp = () => {
                 {...register("basura0", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
+                id="63"
                 name="basura0"
               />
               3
@@ -531,7 +494,7 @@ const SignUp = () => {
                 {...register("basura0", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
+                id="64"
                 name="basura0"
               />
               4
@@ -541,7 +504,7 @@ const SignUp = () => {
                 {...register("basura0", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
+                id="65"
                 name="basura0"
               />
               5
@@ -556,7 +519,7 @@ const SignUp = () => {
                 {...register("km0", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
+                id="71"
                 name="km0"
               />
               1
@@ -566,7 +529,7 @@ const SignUp = () => {
                 {...register("km0", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
+                id="72"
                 name="km0"
               />
               2
@@ -576,7 +539,7 @@ const SignUp = () => {
                 {...register("km0", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
+                id="73"
                 name="km0"
               />
               3
@@ -586,7 +549,7 @@ const SignUp = () => {
                 {...register("km0", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
+                id="74"
                 name="km0"
               />
               4
@@ -596,7 +559,7 @@ const SignUp = () => {
                 {...register("km0", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
+                id="75"
                 name="km0"
               />
               5
@@ -611,7 +574,7 @@ const SignUp = () => {
                 {...register("vegano", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
+                id="81"
                 name="vegano"
               />
               1
@@ -621,7 +584,7 @@ const SignUp = () => {
                 {...register("vegano", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
+                id="82"
                 name="vegano"
               />
               2
@@ -631,7 +594,7 @@ const SignUp = () => {
                 {...register("vegano", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
+                id="83"
                 name="vegano"
               />
               3
@@ -641,7 +604,7 @@ const SignUp = () => {
                 {...register("vegano", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
+                id="84"
                 name="vegano"
               />
               4
@@ -651,7 +614,7 @@ const SignUp = () => {
                 {...register("vegano", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
+                id="85"
                 name="vegano"
               />
               5
@@ -666,7 +629,7 @@ const SignUp = () => {
                 {...register("vegetariano", { required: true })}
                 type="radio"
                 value="1"
-                id="1"
+                id="91"
                 name="vegetariano"
               />
               1
@@ -676,7 +639,7 @@ const SignUp = () => {
                 {...register("vegetariano", { required: true })}
                 type="radio"
                 value="2"
-                id="2"
+                id="92"
                 name="vegetariano"
               />
               2
@@ -686,7 +649,7 @@ const SignUp = () => {
                 {...register("vegetariano", { required: true })}
                 type="radio"
                 value="3"
-                id="3"
+                id="93"
                 name="vegetariano"
               />
               3
@@ -696,7 +659,7 @@ const SignUp = () => {
                 {...register("vegetariano", { required: true })}
                 type="radio"
                 value="4"
-                id="4"
+                id="94"
                 name="vegetariano"
               />
               4
@@ -707,16 +670,91 @@ const SignUp = () => {
                 {...register("vegetariano", { required: true })}
                 type="radio"
                 value="5"
-                id="5"
+                id="95"
                 name="vegetariano"
               />
               5
               {errors.vegetariano && <p>Por favor, marca algún valor</p>}
             </label>
           </fieldset>
+          <fieldset>
+            <legend>Artesanal</legend>
+            <label htmlFor="1">
+              <input
+                {...register("artesanal", { required: true })}
+                type="radio"
+                value="1"
+                id="101"
+                name="artesanal"
+              />
+              1
+            </label>
+            <label htmlFor="2">
+              <input
+                {...register("artesanal", { required: true })}
+                type="radio"
+                value="2"
+                id="102"
+                name="artesanal"
+              />
+              2
+            </label>
+            <label htmlFor="3">
+              <input
+                {...register("artesanal", { required: true })}
+                type="radio"
+                value="3"
+                id="103"
+                name="artesanal"
+              />
+              3
+            </label>
+            <label htmlFor="4">
+              <input
+                {...register("artesanal", { required: true })}
+                type="radio"
+                value="4"
+                id="104"
+                name="artesanal"
+              />
+              4
+            </label>
+            <label htmlFor="5">
+              <input
+                {...register("artesanal", { required: true })}
+                type="radio"
+                value="5"
+                id="105"
+                name="artesanal"
+              />
+              5
+              {errors.artesanal && <p>Por favor, marca algún valor</p>}
+
+            </label>
+          </fieldset>
 
         </div>
 
+        {/* errores */}
+        <div>
+          {errors.nombre && <p>Error en el nombre</p>}
+          {errors.email && <p>Error en el email</p>}
+          {errors.password && <p>Error en la contraseña</p>}
+          {errors.password_repeat && <p>Las contraseñas no coinciden</p>}
+          {errors.terms && <p>Tienes que aceptar los términos y condiciones para poder formar parte de nuestra comnunidad</p>}
+
+
+          {errors.productosTemporada && <p>Por favor, marca algún valor en productos de temporada</p>}
+          {errors.productosFrescos && <p>Por favor, marca algún valor en productos frescos</p>}
+          {errors.organico && <p>Por favor, marca algún valor en organico</p>}
+          {errors.saludable && <p>Por favor, marca algún valor en saludable</p>}
+          {errors.sostenible && <p>Por favor, marca algún valor en sostenible</p>}
+          {errors.basura0 && <p>Por favor, marca algún valor en basura0</p>}
+          {errors.km0 && <p>Por favor, marca algún valor en km0</p>}
+          {errors.vegano && <p>Por favor, marca algún valor en vegano</p>}
+          {errors.vegetariano && <p>Por favor, marca algún valor en vegetariano</p>}
+          {errors.artesanal && <p>Por favor, marca algún valor en artesanal</p>}
+        </div>
 
         {/* botones */}
         {part3 ?
