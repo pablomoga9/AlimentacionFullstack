@@ -8,6 +8,10 @@ import axios from "axios";
 import BackLogo from '../../../assets/img/Back @2x.png';
 import BurgerBtn from '../../../assets/img/menu@2x.png';
 import { slide as Menu } from 'react-burger-menu'
+import { Fragment } from 'react';//ScrollButton
+import ScrollButton from "../../common/ScrollButton";//ScrollButton
+import { Content, Heading } from "../../common/Styles";//ScrollButton
+
 
 
 const List = () => {
@@ -89,7 +93,11 @@ const List = () => {
         <Link to="/home"><img src={BackLogo} alt="" /></Link>
       </div>
       <div className="storesTitleContainer">
-        <h2 className="storesTitle">Comercios cerca de ti</h2>
+        {params.re === "restaurants" ?
+          <h2 className="storesTitle">Restaurantes cerca de ti</h2>
+          : <h2 className="storesTitle">Comercios cerca de ti</h2>
+
+        }
       </div>
       <div className="sortBurger">
         <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
@@ -104,6 +112,7 @@ const List = () => {
           .map((item, i) => <li key={uuidv4()} index={i}><Card isRestaurant={params.re} value={item} /></li>)
           : <h2>Loading...</h2>}
       </ul>
+      <ScrollButton />
     </div >
   )
 };
