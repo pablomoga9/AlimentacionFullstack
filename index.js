@@ -3,14 +3,14 @@ const path = require('path');
 require('dotenv').config();
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const cors = require('cors');
 require('./utils/dbSQL.js');
 const app = express();
 const port = process.env.PORT || 5000;
 
 var corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://polar-citadel-31558.herokuapp.com/',
     credentials: true
 }
 //Router
@@ -21,7 +21,8 @@ const userRouter = require('./routes/userRoutes.js');
 const middle404 = require('./middlewares/error404.js');
 
 //Rutas
-app.use(helmet());
+// app.use(helmet());
+app.set('trust proxy',1);
 app.use(express.json());
 app.use(cors(corsOptions));
 // app.use('/', router);
