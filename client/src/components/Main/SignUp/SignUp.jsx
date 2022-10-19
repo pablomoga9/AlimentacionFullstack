@@ -35,7 +35,7 @@ const SignUp = () => {
       const res = await axios.post('http://localhost:5000/api/signup', form);
       alert("Usuario creado con exito!");
       console.log(res.data);
-      navigate('/login')
+      navigate('/')
     }
     catch (error) {
       console.log(error);

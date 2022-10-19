@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 var corsOptions = {
-    origin: 'https://polar-citadel-31558.herokuapp.com/',
+    origin: 'http://localhost:3000',
     credentials: true
 }
 //Router
@@ -22,7 +22,7 @@ const middle404 = require('./middlewares/error404.js');
 
 //Rutas
 // app.use(helmet());
-app.set('trust proxy',1);
+app.set('trust proxy', 1);
 app.use(express.json());
 app.use(cors(corsOptions));
 // app.use('/', router);

@@ -41,7 +41,7 @@ const Login = () => {
   const onSubmit = async (form) => {
     try {
       // console.log(form);
-      const res = await fetch('http://localhost:5000/api/login', {
+      const res = await fetch('https://alimentacionback-production.up.railway.app/api/login', {
         method: 'POST',
         body: JSON.stringify(form),
         headers: {
@@ -50,7 +50,7 @@ const Login = () => {
         credentials: 'include'
       })
       console.log("res ", res);
-      if (res.statusText === "OK") {
+      if (res.ok === true) {
         checkUser();
         if (userCheck === null) {
           setUserCheck(form.email);
