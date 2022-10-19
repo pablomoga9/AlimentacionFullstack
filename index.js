@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 var corsOptions = {
-    origin: 'https://polar-citadel-31558.herokuapp.com/',
+    origin: 'http://localhost:3000',
     credentials: true
 }
 //Router
