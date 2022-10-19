@@ -40,7 +40,7 @@ const Login = () => {
 
   const onSubmit = async (form) => {
     try {
-      console.log(form);
+      // console.log(form);
       const res = await fetch('https://polar-citadel-31558.herokuapp.com/api/login', {
         method: 'POST',
         body: JSON.stringify(form),

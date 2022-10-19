@@ -22,6 +22,7 @@ const middle404 = require('./middlewares/error404.js');
 
 //Rutas
 // app.use(helmet());
+app.set('trust proxy',1);
 app.use(express.json());
 app.use(cors(corsOptions));
 // app.use('/', router);

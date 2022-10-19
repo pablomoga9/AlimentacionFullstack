@@ -74,7 +74,7 @@ const loginUser = async (req, res) => {
                     const token = jwt.sign(businessToken, "secret", {
                         expiresIn: 10000
                     })
-                    res.cookie("token", token, { httpOnly: true }).send()
+                    res.cookie("token", token, 'trust proxy',{ httpOnly: true,secureProxy:true }).send()
                     return token
                 }
                 else {
