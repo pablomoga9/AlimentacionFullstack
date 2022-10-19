@@ -34,11 +34,15 @@ function App() {
   //Checkear usuario
   const checkUser = async () => {
     try {
+
       const res = await axios.get('https://polar-citadel-31558.herokuapp.com/api/checkUser', { withCredentials: true });
-      const userToken = res.data.msg.substr(6, res.data.msg.length);
+      // const userToken = res.data.msg.substr(6, res.data.msg.length);
+      const userToken = res.data.msg;
+
       const user = await jwtDecode(userToken);
       console.log("Token user ", user);
       setUserCheck(user.email);
+
       console.log(userCheck)
 
     }
