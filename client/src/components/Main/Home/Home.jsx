@@ -70,7 +70,7 @@ const Home = () => {
         <button type='submit' onClick={handleSearch} ><img src={Lupa} alt="" /></button>
         <input name='search' ref={searchInput} type="text" placeholder='Búsqueda...' />
       </div>
-      <h2 className='carouselTitle'>Restaurantes</h2>
+      <Link to="/list/restaurants"><h2 className='carouselTitle'>Restaurantes</h2></Link>
       <div className='carouselHome'>
         <Swiper freeMode={true}
           grabCursor={true}
@@ -85,7 +85,7 @@ const Home = () => {
           <SwiperSlide className='plusCard'><Link to="/list/restaurants"><img className='plusImg' src={plusSign} alt="" /><h3>Ver más</h3></Link></SwiperSlide>
         </Swiper>
       </div>
-      <h2 className='carouselTitle'>Tiendas</h2>
+      <Link to="/list/stores"><h2 className='carouselTitle'>Tiendas</h2></Link>
       <div className='carouselHome'>
         <Swiper freeMode={true}
           grabCursor={true}
@@ -94,7 +94,7 @@ const Home = () => {
           slidesPerView={2}
           spaceBetween={30}>
           {stores ? stores.map((item, i) => {
-            return <SwiperSlide  className='swiperCard' key={i}><Card isRestaurant={false} value={item} /></SwiperSlide>
+            return <SwiperSlide className='swiperCard' key={i}><Card isRestaurant={false} value={item} /></SwiperSlide>
           })
             : null}
           <SwiperSlide className='plusCard'><Link to="/list/stores"><img className='plusImg' src={plusSign} alt="" /><h3>Ver más</h3></Link></SwiperSlide>
@@ -113,7 +113,7 @@ const Home = () => {
             return <SwiperSlide className='swiperCard' key={i}><Card value={item} /></SwiperSlide>
           })
             : null}
-          <SwiperSlide  className='plusCard'><Link to="/stores"><img className='plusImg' src={plusSign} alt="" /><h3>Ver más</h3></Link></SwiperSlide>
+          {/* <SwiperSlide className='plusCard'><Link to="/stores"><img className='plusImg' src={plusSign} alt="" /><h3>Ver más</h3></Link></SwiperSlide> */}
         </Swiper>
       </div>
       {/* <div className='storesDirectory'>

@@ -15,23 +15,23 @@ const Login = () => {
   const { userCheck, setUserCheck } = useContext(checkUserContext);
   const { userDetails } = useContext(checkUserContext);
   const { checkUser } = useContext(checkUserContext);
-  const [time,setTime] = useState(false);
-  const {showNav,setShowNav} = useContext(checkUserContext);
+  const [time, setTime] = useState(false);
+  const { showNav, setShowNav } = useContext(checkUserContext);
 
   useEffect(() => {
-    if(userCheck===null){
+    if (userCheck === null) {
       setTime(false)
     }
-    else{
+    else {
       setTime(true);
     }
     setShowNav(false);
-    
-    if(time===false){
-      const timeout = setTimeout(()=>{
-       setTime(true)
-      },2000);
-      return ()=>clearTimeout(timeout)
+
+    if (time === false) {
+      const timeout = setTimeout(() => {
+        setTime(true)
+      }, 2000);
+      return () => clearTimeout(timeout)
     }
 
 
@@ -49,9 +49,17 @@ const Login = () => {
         },
         credentials: 'include'
       })
-      checkUser();
+      console.log("res ", res);
+      if (res.statusText === "OK") {
+        checkUser();
+        if (userCheck === null) {
+          setUserCheck(form.email);
+        }
+        navigate("/home");
+      } else { alert("Oops! algo ha fallado") }
 
-      navigate("/home");
+
+
     }
     catch (error) {
       console.log(error);
@@ -59,46 +67,48 @@ const Login = () => {
   }
 
 
-
+  // statusText :  "Bad Request"
 
 
   return (
     <>
-     {time===false?<Logo/>:<div>
-     
-      <div>
-        <Logo/>
-        {userCheck == null ? <h2 className="titleLogin">Bienvenido</h2> : <h3>Has iniciado sesión como: </h3>}
-        {userCheck == null ? <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
-          <div className="full-input">
-            <label htmlFor="email">Email:</label>
-            <input name="email" type="text"{
-              ...register('email', {
-                required: true,
-                minLength: 3
-              })
-            } />{errors.email?.type === 'required' && <p>El campo 'Email' es requerido</p>}
-          </div>
-          <div className="full-input">
-            <label htmlFor="password">Contraseña:</label>
-            <input name="password" type="password"{
-              ...register('password', {
-                required: true,
-                minLength: 3
-              })
-            } />{errors.email?.type === 'required' && <p>El campo 'Contraseña' es requerido</p>}
-          </div>
-          <input type="submit" value="Login" />
-        </form> : userCheck}
-      </div>
-      <div className="goRegister">
-        <Link to="/signup"><span>
-          Registro
-        </span></Link>
-        <Link to=""><span>
-          ¿Has olvidado tu contraseña?
-        </span></Link>
-      </div>
+
+      {time === false ? <Logo /> : <div>
+
+        <div>
+          <Logo value={"noLink"} />
+          {userCheck == null ? <h2 className="titleLogin">Bienvenido</h2> : <h3>Has iniciado sesión como: </h3>}
+          {userCheck == null ? <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
+            <div className="full-input">
+              <label htmlFor="email">Email:</label>
+              <input name="email" type="text"{
+                ...register('email', {
+                  required: true,
+                  minLength: 3
+                })
+              } />{errors.email?.type === 'required' && <p>El campo 'Email' es requerido</p>}
+            </div>
+            <div className="full-input">
+              <label htmlFor="password">Contraseña:</label>
+              <input name="password" type="password"{
+                ...register('password', {
+                  required: true,
+                  minLength: 3
+                })
+              } />{errors.email?.type === 'required' && <p>El campo 'Contraseña' es requerido</p>}
+            </div>
+            <input type="submit" value="Login" />
+          </form> : userCheck}
+        </div>
+        <div>
+          <Link className="goRegister" to="/signup"><span>
+            Registro
+          </span></Link>
+          <Link to=""><span>
+            ¿Has olvidado tu contraseña?
+          </span></Link>
+        </div>
+
       </div>}
     </>
   )

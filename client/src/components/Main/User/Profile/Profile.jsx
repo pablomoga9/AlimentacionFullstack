@@ -11,16 +11,17 @@ const Profile = () => {
   const navigate = useNavigate();
   const { userCheck } = useContext(checkUserContext);//Hook para obtener el email del usuario logado
   const { userData } = useContext(checkUserContext)//Hook para guardar los datos del perfil de usuario
-  const { userDetails } = useContext(checkUserContext);
+  const { userDetails, checkUser } = useContext(checkUserContext);
 
   console.log(userCheck);
 
 
   useEffect(() => {
     if (userData == null) {
+      checkUser()
       userDetails()
     }
-    console.log(userCheck);
+    // console.log(userCheck);
     if (userCheck === null) {
       navigate("/home");
     }
@@ -29,13 +30,13 @@ const Profile = () => {
 
   return <div className='showcase'>
     <div className='profileTop'>
-        <div className='profileImg'>
-          <img style={{ width: "100px" }} src='https://cdn-icons-png.flaticon.com/512/17/17004.png'></img>
-          <Link to="/user/profile/edit"><img src={Settings} alt="" /></Link>
-        </div>
-        <h1>{userData ? userData.email : "Usuario"}</h1>
+      <div className='profileImg'>
+        <img style={{ width: "100px" }} src='https://cdn-icons-png.flaticon.com/512/17/17004.png'></img>
+        <Link to="/user/profile/edit"><img src={Settings} alt="" /></Link>
+      </div>
+      <h1>{userData ? userData.email : "Usuario"}</h1>
     </div>
-   
+
 
     <Recommendations />
 

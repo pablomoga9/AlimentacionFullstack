@@ -6,8 +6,8 @@ const query = require('../models/queries');
 const createUser = async (form) => {
     try {
 
-        const data = await pool.query(query.createUser, [form.email, form.password]);
-
+        const data = await pool.query(query.createUser, [form.email, form.password, form.name, form.artesanal, form.basura0, form.km0, form.organico, form.productosFrescos, form.productosTemporada, form.saludable, form.sostenible, form.vegano, form.vegetariano]);
+        console.log("Models ", data);
         const results = data.rows
         return results;
     }
