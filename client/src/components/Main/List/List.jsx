@@ -89,7 +89,11 @@ const List = () => {
         <Link to="/home"><img src={BackLogo} alt="" /></Link>
       </div>
       <div className="storesTitleContainer">
-        <h2 className="storesTitle">Comercios cerca de ti</h2>
+        {params.re === "restaurants" ?
+          <h2 className="storesTitle">Restaurantes cerca de ti</h2>
+          : <h2 className="storesTitle">Comercios cerca de ti</h2>
+
+        }
       </div>
       <div className="sortBurger">
         <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
