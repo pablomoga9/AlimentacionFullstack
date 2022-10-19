@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+
 .loginForm{
     display: flex;
     flex-direction: column;
@@ -133,17 +136,19 @@ a:visited{
     display: flex;
     align-items: center;
     flex-direction: row;
-    width: 70%;
+    width: 100%;
     margin: auto;
     .logoTextHeader{
         display: flex;
         flex-direction: row;
         font-family: 'Fredoka One', cursive;
+        width: 100%;
         // font-weight: bold;
         font-size: 103px;
         color:#1F7C3A;
         align-items: center;
         justify-content: center;
+        text-align: center;
     }
     .logoImgHeader{
         width: 20%;

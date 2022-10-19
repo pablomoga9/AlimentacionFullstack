@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { checkUserContext } from '../../../context/checkUserContext';
 import BackLogo from '../../../assets/img/Back @2x.png';
-import BurgerBtn from '../../../assets/img/menu@2x.png';
+import burgerBtn from '../../../assets/img/burger.png'
 import SideBar from "./sidebar";
 import { useLocation } from 'react-router-dom';
 import Logo from '../../common/Logo';
@@ -47,14 +47,12 @@ function Nav() {
     <header>
       {showNav===true?<div>{userCheck === null? <div className='navContainer'>
        <div className='navUser'>
-        <Link onClick={handleClick} to="/">Login</Link>
-        <Link onClick={handleClick} to="/signup">Registro</Link>
+        
        </div>
         <Logo className='logoHeader'/>
       </div> : <div className='navContainer'>
         <div className='navUser'>
-          <Link to={'User/Profile'}><p>{userCheck}</p></Link>
-          <Link onClick={handleLogout}>Logout</Link>
+          
         </div>
         <Logo className='logoHeader'/>
       </div>}</div>:null}
