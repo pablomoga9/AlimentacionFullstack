@@ -3,7 +3,7 @@ const path = require('path');
 require('dotenv').config();
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 const cors = require('cors');
 require('./utils/dbSQL.js');
 const app = express();
@@ -21,7 +21,7 @@ const userRouter = require('./routes/userRoutes.js');
 const middle404 = require('./middlewares/error404.js');
 
 //Rutas
-app.use(helmet());
+// app.use(helmet());
 app.use(express.json());
 app.use(cors(corsOptions));
 // app.use('/', router);
