@@ -27,25 +27,25 @@ const Recommendations = (props) => {
       {recommendations ? recommendations.episode.slice(0, 2)
         .map((item, i) => <MiniCard key={uuidv4()} index={i} value={item} />)
         : "Loading..."}
-      {/* <Swiper freeMode={true}
+      <Swiper freeMode={true}
 
-                grabCursor={true}
-                modules={[FreeMode]}
-                className='recommendationCarousel'
-                slidesPerView={2}
-                spaceBetween={30}>
-                {recommendations?recommendations.episode.slice(0,10).map((item,i)=>{
-                  return <SwiperSlide key={uuidv4()} index={i}><MiniCard value={item}/></SwiperSlide>
-                })
-                :<div>
-                  <SwiperSlide ><div className="spinner"></div></SwiperSlide>
-                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
-                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
-                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
-                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
-                <SwiperSlide ><div className="spinner"></div></SwiperSlide></div>}
-                
-        </Swiper>
+        grabCursor={true}
+        modules={[FreeMode]}
+        className='recommendationCarousel'
+        slidesPerView={2}
+        spaceBetween={30}>
+        {recommendations ? recommendations.episode.slice(0, 10).map((item, i) => {
+          return <SwiperSlide key={uuidv4()} index={i}><MiniCard value={item} /></SwiperSlide>
+        })
+          : <div>
+            <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+            <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+            <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+            <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+            <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+            <SwiperSlide ><div className="spinner"></div></SwiperSlide></div>}
+
+      </Swiper>
     </section>
   </>)
 };
