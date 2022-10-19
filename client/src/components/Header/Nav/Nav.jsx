@@ -5,11 +5,10 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { checkUserContext } from '../../../context/checkUserContext';
 import BackLogo from '../../../assets/img/Back @2x.png';
-import burgerCross from '../../../assets/img/bars-solid.svg'
-// import SideBar from "./sidebar";
+import BurgerBtn from '../../../assets/img/menu@2x.png';
+import SideBar from "./sidebar";
 import { useLocation } from 'react-router-dom';
 import Logo from '../../common/Logo';
-import SideBar from "./sidebar";
 
 function Nav() {
   const { userCheck, setUserCheck } = useContext(checkUserContext);
@@ -17,7 +16,6 @@ function Nav() {
   const navigate = useNavigate();
   const {showNav,setShowNav} = useContext(checkUserContext);
   const location = useLocation();
-  const [btnState,setBtnState] = useState(false);
 
   useEffect(()=>{
     if(location.pathname==="/"||location.pathname.includes("/stores/details/")||location.pathname.includes("/restaurants/details/")||location.pathname.includes("/user/profile/")){
@@ -29,19 +27,6 @@ function Nav() {
    
     
   },[showNav])
-
-
-  function handleClickBtn(){
-    console.log("griogeioru")
-    if(btnState===false){
-      setBtnState(true)
-    }
-    else{
-      setBtnState(false);
-    }
-  }
-
-  let toggleClassCheck = btnState?'active':'';
 
   const handleClick = () => {
     setClicked(!clicked)
@@ -61,10 +46,17 @@ function Nav() {
   return (
     <header>
       {showNav===true?<div>{userCheck === null? <div className='navContainer'>
-      <SideBar pageWrapId={"page-wrap"} outerContainerId={"navContainer"} />
+       <div className='navUser'>
+        <Link onClick={handleClick} to="/">Login</Link>
+        <Link onClick={handleClick} to="/signup">Registro</Link>
+       </div>
         <Logo className='logoHeader'/>
-      </div> : <div className='navContainer'> <SideBar pageWrapId={"page-wrap"} outerContainerId={"navContainer"} />
-         <Logo className='logoHeader'/>
+      </div> : <div className='navContainer'>
+        <div className='navUser'>
+          <Link to={'User/Profile'}><p>{userCheck}</p></Link>
+          <Link onClick={handleLogout}>Logout</Link>
+        </div>
+        <Logo className='logoHeader'/>
       </div>}</div>:null}
     </header>
   )

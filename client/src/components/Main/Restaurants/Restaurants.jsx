@@ -8,7 +8,7 @@ import { useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import { useForm } from 'react-hook-form';
 import BackLogo from '../../../assets/img/Back @2x.png';
-// import BurgerBtn from '../../../assets/img/menu@2x.png';
+import BurgerBtn from '../../../assets/img/menu@2x.png';
 import { slide as Menu } from 'react-burger-menu'
 
 const Restaurants = () => {
@@ -50,7 +50,7 @@ const Restaurants = () => {
       </div>
 
       <div className="sortBurger">
-        {/* <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button> */}
+        <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
         <select className="sortList">
           <option value="rating">Mejor valoradas</option>
           <option value="closest">Más cercanas</option>

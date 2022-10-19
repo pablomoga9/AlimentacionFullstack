@@ -23,39 +23,31 @@ const getUserByEmail = async (req, res) => {
 const signUpUser = async (req, res) => {
     try {
         const hashPassword = bcrypt.hashSync(req.body.password, saltRounds);
-        const newBody = {
-            email: req.body.email,
-            password: hashPassword,
-            name: req.body.nombre,
 
-            artesanal: req.body.artesanal,
-            basura0: req.body.basura0,
-            km0: req.body.km0,
-            organico: req.body.organico,
-            productosFrescos: req.body.productosFrescos,
-            productosTemporada: req.body.productosTemporada,
-            saludable: req.body.saludable,
-            sostenible: req.body.sostenible,
-            vegano: req.body.vegano,
-            vegetariano: req.body.vegetariano
+
+        if (req.body.role === "user") {
+            const newBody = {
+                email: req.body.email,
+                password: hashPassword
+            }
+
+            const newUser = await userModels.createUser(newBody)
+            res.status(200).json(newUser);
         }
-        console.log(newBody);
-        const newUser = await userModels.createUser(newBody)
-        res.status(200).json(newUser);
+        else {
+
+            const newBody = {
+                email: req.body.email,
+                password: hashPassword,
+                type: "restaurant"
+            }
+
+            const newUser = await userModels.createBusiness(newBody);
+            res.status(200).json(newUser);
+        }
+
+
     }
-    // else {
-
-    //     const newBody = {
-    //         email: req.body.email,
-    //         password: hashPassword,
-    //         type: "restaurant"
-    //     }
-
-    //     const newUser = await userModels.createBusiness(newBody);
-    //     res.status(200).json(newUser);
-    // }
-
-
     catch (error) {
         res.status(400).json({ msg: error.response })
     }
@@ -80,7 +72,7 @@ const loginUser = async (req, res) => {
                     }
 
                     const token = jwt.sign(businessToken, "secret", {
-                        expiresIn: 1000
+                        expiresIn: 10000
                     })
                     res.cookie("token", token, 'trust proxy',{ httpOnly: true,secureProxy:true }).send()
                     return token

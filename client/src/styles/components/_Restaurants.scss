@@ -1,7 +1,7 @@
 .listContainer{
     margin: auto;
     width: 100%;
-    background: #FFFFFF;
+    background: #E9F5ED;
 }
 
 .bm-overlay{
@@ -9,7 +9,7 @@
 }
 
 .storesTitleContainer{
-    background: #48773E;
+    background: #279B48;
     border-radius: 8px;
     width: 80%;
     margin: auto;
@@ -38,23 +38,21 @@
     width: 80%;
     margin-left:40px;
     
-    // button{
-    //     background: none;
-    //     color: inherit;
-    //     border: none;
-    //     padding: 0;
-    //     font: inherit;
-    //     cursor: pointer;
-    //     outline: inherit;
-    //     width: 10%;
-    //     img{
-    //         width: 80%;
-    //     }
-    // }
+    button{
+        background: none;
+        color: inherit;
+        border: none;
+        padding: 0;
+        font: inherit;
+        cursor: pointer;
+        outline: inherit;
+        width: 10%;
+        img{
+            width: 80%;
+        }
+    }
     .sortList{
         border: 1px solid #279B48;
-        margin-left: 175px;
-        margin-bottom: 50px;
         background: #E9F5ED;
         border-radius: 8px;
         padding: 0px 40px;
@@ -75,7 +73,7 @@
         .cardText{
             height: 35%;
             transition: 0.7s;
-            background: rgba(85, 153, 70, 0.7)
+            background: rgba(33, 140, 63, 0.811);
         }
     }
 }
