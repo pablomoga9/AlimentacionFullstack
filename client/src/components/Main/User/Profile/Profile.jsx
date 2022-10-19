@@ -28,7 +28,7 @@ const Profile = () => {
   }, []);
 
 
-  return <div>
+  return <div className='showcase'>
     <div className='profileTop'>
       <div className='profileImg'>
         <img style={{ width: "100px" }} src='https://cdn-icons-png.flaticon.com/512/17/17004.png'></img>
@@ -43,6 +43,15 @@ const Profile = () => {
     <Discounts />
 
     <Favorites />
+    <article class="menuHamb">
+        <ul>
+          <li><a href="#">Bienvenida</a></li>
+          <li><a href="./pages/biografia.html">Sobre mí</a></li>
+          <li><a href="./pages/portfolio.html">Portfolio</a></li>
+          <li><a href="./pages/contacto.html">Contacto</a></li>
+         
+        </ul>
+      </article>
 
   </div >;
 };

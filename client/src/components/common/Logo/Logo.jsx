@@ -12,12 +12,14 @@ const Logo = (props) => {
 
   return (
     <div data-aos="fade-down">
+
       {link === "noLink" ?
         <div className="logoHeader"><h1 className="logoTextHeader">K'm<img className="logoImgHeader" src={LogoCircle}></img>n</h1></div>
 
         : <Link to={"/home"}><div className="logoHeader"><h1 className="logoTextHeader">K'm<img className="logoImgHeader" src={LogoCircle}></img>n</h1></div>
         </Link>
       }
+
     </div>
   );
 };

@@ -72,6 +72,7 @@ const Login = () => {
 
   return (
     <>
+
       {time === false ? <Logo /> : <div>
 
         <div>
@@ -100,13 +101,14 @@ const Login = () => {
           </form> : userCheck}
         </div>
         <div>
-          <Link to="/signup"><span>
+          <Link className="goRegister" to="/signup"><span>
             Registro
           </span></Link>
           <Link to=""><span>
             ¿Has olvidado tu contraseña?
           </span></Link>
         </div>
+
       </div>}
     </>
   )

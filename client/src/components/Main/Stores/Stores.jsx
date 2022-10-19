@@ -86,7 +86,7 @@ const Stores = () => {
         <h2 className="storesTitle">Comercios cerca de ti</h2>
       </div>
       <div className="sortBurger">
-        <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
+        {/* <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button> */}
         <select className="sortList" onChange={handleChange}>
           <option value="rating">Mejor valoradas</option>
           <option value="closest">Más cercanas</option>
