@@ -89,7 +89,7 @@ const SignUp = () => {
         <fieldset style={part1 ? {} : { display: "none" }} >
           <h2 className="titleLogin">Bienvenido</h2>
           <div><p className="preferenceIntro">Ya no queda nada, completando la siguiente información formarás parte de la comunidad Kmon.</p></div>
-          <div className="full-input">
+          <div className="full-input signupInput">
             <label htmlFor="nombre">Nombre</label>
             <input  type="text"
               name="nombre"
@@ -113,7 +113,7 @@ const SignUp = () => {
             {errors.nombre && <p>{errors.nombre.message}</p>}
 
           </div>
-          <div className="full-input">
+          <div className="full-input signupInput">
             <label htmlFor="email">Email</label>
             <input type="text"
               name="email"
@@ -131,7 +131,7 @@ const SignUp = () => {
               } />
             {errors.email && <p>{errors.email.message}</p>}
           </div>
-          <div className="full-input">
+          <div className="full-input signupInput">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -154,7 +154,7 @@ const SignUp = () => {
             />
             {errors.password ? <div>{errors.password.message}</div> : null}
           </div>
-          <div className="full-input">
+          <div className="full-input signupInput">
             <label>Repeat password</label>
             <input
               name="password_repeat"
@@ -260,7 +260,7 @@ const SignUp = () => {
                 name="productosTemporada"
               />
               5
-              {errors.productosTemporada && <p>Por favor, marca algún valor</p>}
+              {errors.productosTemporada && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -316,7 +316,7 @@ const SignUp = () => {
                 name="productosFrescos"
               />
               5
-              {errors.productosFrescos && <p>Por favor, marca algún valor</p>}
+              {errors.productosFrescos && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -372,7 +372,7 @@ const SignUp = () => {
                 name="organico"
               />
               5
-              {errors.organico && <p>Por favor, marca algún valor</p>}
+              {errors.organico && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -428,7 +428,7 @@ const SignUp = () => {
                 name="saludable"
               />
               5
-              {errors.saludable && <p>Por favor, marca algún valor</p>}
+              {errors.saludable && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -490,7 +490,7 @@ const SignUp = () => {
                 name="sostenible"
               />
               5
-              {errors.sostenible && <p>Por favor, marca algún valor</p>}
+              {errors.sostenible && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -545,7 +545,7 @@ const SignUp = () => {
                 name="basura0"
               />
               5
-              {errors.basura0 && <p>Por favor, marca algún valor</p>}
+              {errors.basura0 && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -600,7 +600,7 @@ const SignUp = () => {
                 name="km0"
               />
               5
-              {errors.km0 && <p>Por favor, marca algún valor</p>}
+              {errors.km0 && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -655,7 +655,7 @@ const SignUp = () => {
                 name="vegano"
               />
               5
-              {errors.vegano && <p>Por favor, marca algún valor</p>}
+              {errors.vegano && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -711,7 +711,7 @@ const SignUp = () => {
                 name="vegetariano"
               />
               5
-              {errors.vegetariano && <p>Por favor, marca algún valor</p>}
+              {errors.vegetariano && <p className="radioError">Por favor, marca algún valor</p>}
             </label>
           </fieldset>
           <fieldset>
@@ -765,7 +765,7 @@ const SignUp = () => {
                 name="artesanal"
               />
               5
-              {errors.artesanal && <p>Por favor, marca algún valor</p>}
+              {errors.artesanal && <p className="radioError">Por favor, marca algún valor</p>}
 
             </label>
           </fieldset>
@@ -773,7 +773,7 @@ const SignUp = () => {
         </div>
 
         {/* errores */}
-        <div>
+        <div className="errorClass">
           {errors.nombre && <p>Error en el nombre</p>}
           {errors.email && <p>Error en el email</p>}
           {errors.password && <p>Error en la contraseña</p>}
@@ -781,16 +781,16 @@ const SignUp = () => {
           {errors.terms && <p>Tienes que aceptar los términos y condiciones para poder formar parte de nuestra comnunidad</p>}
 
 
-          {errors.productosTemporada && <p>Por favor, marca algún valor en productos de temporada</p>}
-          {errors.productosFrescos && <p>Por favor, marca algún valor en productos frescos</p>}
-          {errors.organico && <p>Por favor, marca algún valor en organico</p>}
-          {errors.saludable && <p>Por favor, marca algún valor en saludable</p>}
-          {errors.sostenible && <p>Por favor, marca algún valor en sostenible</p>}
-          {errors.basura0 && <p>Por favor, marca algún valor en basura0</p>}
-          {errors.km0 && <p>Por favor, marca algún valor en km0</p>}
-          {errors.vegano && <p>Por favor, marca algún valor en vegano</p>}
-          {errors.vegetariano && <p>Por favor, marca algún valor en vegetariano</p>}
-          {errors.artesanal && <p>Por favor, marca algún valor en artesanal</p>}
+          {errors.productosTemporada && <p className="radioError">Por favor, marca algún valor en productos de temporada</p>}
+          {errors.productosFrescos && <p className="radioError">Por favor, marca algún valor en productos frescos</p>}
+          {errors.organico && <p className="radioError">Por favor, marca algún valor en organico</p>}
+          {errors.saludable && <p className="radioError">Por favor, marca algún valor en saludable</p>}
+          {errors.sostenible && <p className="radioError">Por favor, marca algún valor en sostenible</p>}
+          {errors.basura0 && <p className="radioError">Por favor, marca algún valor en basura0</p>}
+          {errors.km0 && <p className="radioError">Por favor, marca algún valor en km0</p>}
+          {errors.vegano && <p className="radioError">Por favor, marca algún valor en vegano</p>}
+          {errors.vegetariano && <p className="radioError">Por favor, marca algún valor en vegetariano</p>}
+          {errors.artesanal && <p className="radioError">Por favor, marca algún valor en artesanal</p>}
         </div>
 
         {/* botones */}
@@ -809,7 +809,11 @@ const SignUp = () => {
           <button className="nextArrow"  onClick={handleChangePart} value="next">Siguiente<img src={Arrow} alt="" /></button>
           : null
       }
+      <div className="spaceFooter">
+
+      </div>
      </div>
+    
     </>
   )
 }
