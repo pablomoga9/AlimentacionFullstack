@@ -68,7 +68,7 @@ const Login = () => {
      
       <div>
         <Logo/>
-        {userCheck == null ? <h3 className="titleLogin">Bienvenido</h3> : <h3>Has iniciado sesión como: </h3>}
+        {userCheck == null ? <h2 className="titleLogin">Bienvenido</h2> : <h3>Has iniciado sesión como: </h3>}
         {userCheck == null ? <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
           <div className="full-input">
             <label htmlFor="email">Email:</label>
