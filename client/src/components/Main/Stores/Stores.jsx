@@ -26,7 +26,7 @@ const Stores = () => {
 
 
   useEffect(() => {
-    getStores();//Cambiar a getStoresSortBy(sortBy)
+    getStores();
 
     console.log(userCheck);
     if (userCheck === null) {
@@ -95,7 +95,7 @@ const Stores = () => {
       </div>
       <ul className="directoryList">
         {stores ? stores
-          .map((item, i) => <li key={uuidv4()} index={i}><Card  value={item} /></li>)
+          .map((item, i) => <li key={uuidv4()} index={i}><Card value={item} /></li>)
           : <h2>Loading...</h2>}
       </ul>
     </div >

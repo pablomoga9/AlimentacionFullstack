@@ -15,5 +15,8 @@ routes.post('/saveBooking/:email', userController.saveBooking);
 routes.get('/restaurant/:name', userController.getReviews)//Traer lista de reseñas de restaurante
 routes.post('/restaurant/:name', userController.createReview);//Crear reseña
 
+//Rutas tiendas
+routes.get('/store', userController.getStores)//Traer lista de restaurantes
+
 
 module.exports = routes;

@@ -4,7 +4,8 @@ const queries = {
     "createUser": "INSERT INTO users (email,password) VALUES ($1,$2)",
     "createBusiness": "INSERT INTO business (email,password,type) VALUES ($1,$2,$3)",
     "getRestaurants": "SELECT * FROM negocios WHERE resotie='Restaurante'",
-    "getRestaurantById": "SELECT * FROM negocios WHERE place_id=$1"
+    "getRestaurantById": "SELECT * FROM negocios WHERE place_id=$1",
+    "getStores": "SELECT * FROM negocios WHERE resotie='Tienda'",
 }
 
 module.exports = queries;

@@ -21,9 +21,8 @@ function App() {
   const [discounts, setDiscounts] = useState(null);//Hook con el listado de los descuentos
   const [recommendations, setRecommendations] = useState(null);//Hook con el listado de recomendaciones
   const [favorites, setFavorites] = useState(null);//Hook con el listado de Favoritos
-  const [showNav,setShowNav] = useState(null);
+  const [showNav, setShowNav] = useState(null);
   const [restaurants, setRestaurants] = useState(null)
-
 
 
   console.log("userCheck ", userCheck);
@@ -32,7 +31,6 @@ function App() {
 
   }, [])
 
-  //Users----------------------------------------------------------------------------
   //Checkear usuario
   const checkUser = async () => {
     try {
@@ -60,16 +58,12 @@ function App() {
       console.log(error);
     }
   }
-  //------------------------------------------------------------------
 
-  //Stores -----------------------------------------------------------
   //Obtener listado de todas las tiendas
   const getStores = async () => {
     try {
-      console.log("Estas en getStoresSortBy");
-
-      const res = await axios.get('https://rickandmortyapi.com/api/character');
-      setStores(res.data.results.slice(0, 10));
+      const res = await axios.get('http://localhost:5000/api/store');
+      setStores(res.data.slice(0, 10));
     }
     catch (error) {
       console.log(error);
@@ -78,51 +72,31 @@ function App() {
 
   const getRestaurants = async () => {
     try {
-      // const res = await axios.get('https://rickandmortyapi.com/api/character');
       const res = await axios.get('http://localhost:5000/api/restaurant');
       setRestaurants(res.data.slice(0, 10));
-
-      // setRestaurants(res.data.results);
     }
     catch (error) {
       console.log(error)
     }
   }
-  console.log(restaurants);
+
 
   //Obtener los detalles de una store
   const getDetails = async (id) => {
     try {
-      // const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
-      // console.log(res);
-      // setStoreDetails(res.data)
-
-
       const res = await axios.get(`http://localhost:5000/api/restaurant/?id=${id}`);
       console.log(...res.data);
       setDetails(...res.data)
-
     } catch (error) {
       console.log(error);
     }
   }
-  //------------------------------------------------------------------
 
-  //Obtener los detalles de un restaurante
-  const getRestaurantDetails = async (id) => {
-    try {
-      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
-      setRestaurantDetails(res.data);
-    }
-    catch (error) {
-      console.log(error);
-    }
-  }
 
   //Obtener los descuentos
   const getDiscounts = async (id) => {
     try {
-      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/1`);
       console.log(res);
       setDiscounts(res.data)
     } catch (error) {
@@ -133,7 +107,7 @@ function App() {
   //Obtener las recomendaciones
   const getRecommendations = async (id) => {
     try {
-      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/1`);
       console.log(res);
       setRecommendations(res.data)
     } catch (error) {
@@ -144,7 +118,7 @@ function App() {
   //Obtener los favoritos
   const getFavorites = async (id) => {
     try {
-      const res = await axios.get(`https://rickandmortyapi.com/api/character/${id}`);
+      const res = await axios.get(`https://rickandmortyapi.com/api/character/1`);
       console.log(res);
       setFavorites(res.data)
     } catch (error) {
@@ -168,7 +142,7 @@ function App() {
     setDetails,
     restaurantDetails,
     setRestaurantDetails,
-    getRestaurantDetails,
+
     discounts,
     setDiscounts,
     getDiscounts,

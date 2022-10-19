@@ -9,7 +9,6 @@ import "swiper/css/free-mode";
 
 //Tendra que recibir algun parametro para indicarle la id del comercio a buscar
 const Discounts = (props) => {
-  console.log(props);
   const info = props.value;
   const { discounts, setDiscounts } = useContext(checkUserContext);//Hook con el listado de las stores
   const { getDiscounts } = useContext(checkUserContext);//Funcion para obtener el listado de stores
@@ -19,12 +18,11 @@ const Discounts = (props) => {
     getDiscounts(info);
   }, []);
 
-  console.log(discounts);
 
   return (<>
     {/* <section>
       <h1>Descuentos:</h1>
-      {discounts ? discounts.episode.slice(0, 5)
+      {discounts ? discounts.episode.slice(0, 2)
         .map((item, i) => <MiniCard key={uuidv4()} index={i} value={item} />)
         : "Loading..."}
     </section> */}
