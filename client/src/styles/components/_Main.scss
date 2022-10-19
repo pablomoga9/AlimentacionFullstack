@@ -133,6 +133,8 @@ a:visited{
     display: flex;
     align-items: center;
     flex-direction: row;
+    width: 70%;
+    margin: auto;
     .logoTextHeader{
         display: flex;
         flex-direction: row;
@@ -146,6 +148,7 @@ a:visited{
     .logoImgHeader{
         width: 20%;
         height: 50%;
+        margin-top: 10px;
     }
 }
 
@@ -368,5 +371,22 @@ a:visited{
 
   .discounts{
     background: #E8AF43;
+  }
+  
+  
+  .goRegister{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+    a{
+        span{
+            color: #144E24;
+        }
+        span:hover{
+            color: #5bc378;
+        }
+    }
   }
 

@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
                     }
 
                     const token = jwt.sign(businessToken, "secret", {
-                        expiresIn: 10000
+                        expiresIn: 1000
                     })
                     res.cookie("token", token, { httpOnly: true }).send()
                     return token

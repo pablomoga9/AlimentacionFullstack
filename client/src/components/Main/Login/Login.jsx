@@ -91,7 +91,7 @@ const Login = () => {
           <input type="submit" value="Login" />
         </form> : userCheck}
       </div>
-      <div>
+      <div className="goRegister">
         <Link to="/signup"><span>
           Registro
         </span></Link>
