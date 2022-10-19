@@ -57,10 +57,61 @@ const getBusinessByEmail = async (e) => {
     }
 }
 
+
+const getRestaurants = async (e) => {
+    try {
+        const data = await pool.query(query.getRestaurants);
+        const result = data.rows;
+        return result;
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+const getRestaurantById = async (id) => {
+    try {
+        const data = await pool.query(query.getRestaurantById, [id]);
+        const result = data.rows;
+        return result;
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+
+const getStores = async (e) => {
+    try {
+        const data = await pool.query(query.getStores);
+        const result = data.rows;
+        return result;
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+const getStoresById = async (id) => {
+    try {
+        const data = await pool.query(query.getRestaurantById, [id]);
+        const result = data.rows;
+        return result;
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+
 module.exports = {
     createUser,
     createBusiness,
     loginUser,
     getBusinessByEmail,
-    getUserByEmail
+    getUserByEmail,
+    getRestaurants,
+    getRestaurantById,
+    getStores,
+    getStoresById
 }

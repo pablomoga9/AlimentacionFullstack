@@ -1,6 +1,6 @@
 const pg = require('pg');
 require('dotenv').config()
-const client = new pg.Client("postgres://bgvfwnly:ZVnvAUmOe28gU52Hb1nKI1h6CtlXZLy1@lucky.db.elephantsql.com/bgvfwnly")
+const client = new pg.Client(process.env.ELEPHANT)
 
 client.connect(function(err){
     if(err){

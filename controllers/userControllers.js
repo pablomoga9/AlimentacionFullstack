@@ -10,6 +10,7 @@ const getUserByEmail = async (req, res) => {
     if (email) {
         try {
             let user = await userModels.getUserByEmail(email);
+            console.log(user);
             res.status(200).json(user);
         } catch (error) {
             console.log(`ERROR: ${error.stack}`);
@@ -105,6 +106,90 @@ const loginUser = async (req, res) => {
     }
 }
 
+const saveBooking = async (req, res) => {
+    try {
+        console.log(req.body);
+        res.status(200).json({ msg: req.body });
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+const createReview = async (req, res) => {
+    try {
+        res.status(200).json({ msg: req.body });
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+//Obtener todos los restaurantes
+const getRestaurants = async (req, res) => {
+    if (req.query.id) {
+        console.log("req query", req.query);
+        try {
+            const restaurant = await userModels.getRestaurantById(req.query.id);
+            res.status(200).json(restaurant);
+            console.log(restaurant, restaurant.length);
+
+        } catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "restaurant not found" });
+        }
+    } else {
+        // all restaurants
+        try {
+            const resturants = await userModels.getRestaurants();
+            res.status(200).json(resturants);
+            console.log("All resturants", resturants.length);
+
+        }
+        catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "Restaurants not found" });
+        }
+    }
+}
+
+//Obtener todas las tiendas
+const getStores = async (req, res) => {
+    if (req.query.id) {
+        console.log("req query", req.query);
+        try {
+            const store = await userModels.getStoreById(req.query.id);
+            res.status(200).json(store);
+            console.log(store, store.length);
+
+        } catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "store not found" });
+        }
+    } else {
+        // all restaurants
+        try {
+            const resturants = await userModels.getStores();
+            res.status(200).json(resturants);
+            console.log("All stores", resturants.length);
+
+        }
+        catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "store not found" });
+        }
+    }
+}
+
+const getReviews = async (req, res) => {
+    try {
+
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
 
 const logoutUser = async (req, res) => {
     try {
@@ -130,5 +215,10 @@ module.exports = {
     signUpUser,
     loginUser,
     checkUser,
-    logoutUser
+    logoutUser,
+    saveBooking,
+    createReview,
+    getReviews,
+    getRestaurants,
+    getStores
 }
