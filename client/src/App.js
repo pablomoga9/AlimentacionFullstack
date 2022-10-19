@@ -11,6 +11,7 @@ import jwtDecode from 'jwt-decode';
 import Restaurants from "./components/Main/Restaurants/Restaurants";
 
 
+
 function App() {
   const [userCheck, setUserCheck] = useState(null);
   const [userData, setUserData] = useState(null)//Hook para almacenar los datos del perfil de usuario
@@ -167,7 +168,7 @@ function App() {
 
           <Main />
         </checkUserContext.Provider>
-        <Footer />
+        {/* <Footer /> */}
       </BrowserRouter>
     </div>
   );

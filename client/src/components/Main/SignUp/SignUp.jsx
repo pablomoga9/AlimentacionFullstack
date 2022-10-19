@@ -3,6 +3,9 @@ import { useForm } from 'react-hook-form';
 import { ErrorMessage } from '@hookform/error-message';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Logo from '../../common/Logo';
+import Switch from "react-switch";
+import Arrow from '../../../assets/img/arrow.png'
 
 const SignUp = () => {
   const { register, watch, formState: { errors }, handleSubmit } = useForm();
@@ -13,6 +16,15 @@ const SignUp = () => {
   const [part1, setPart1] = useState(true);//Estado para mostrar o no la parte 1 del formulario
   const [part2, setPart2] = useState(false);//Estado para mostrar o no la parte 2 del formulario
   const [part3, setPart3] = useState(false);//Estado para mostrar o no la parte 3 del formulario
+
+  const [checked, setChecked] = useState(false);
+  const [checked2,setChecked2] = useState(false);
+  const handleChange = nextChecked => {
+    setChecked(nextChecked);
+  };
+  const handleChange2 = nextChecked => {
+    setChecked2(nextChecked);
+  };
 
 
   //Envio del formulario a la bbdd
@@ -26,6 +38,15 @@ const SignUp = () => {
     }
     catch (error) {
       console.log(error);
+    }
+  }
+
+  function handleChecked(checked){
+    if(checked){
+      setChecked(false)
+    }
+    else{
+      setChecked(true)
     }
   }
 
@@ -63,13 +84,14 @@ const SignUp = () => {
   return (
     <>
       {/* Primera parte del formulario */}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <Logo/>
+      <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
         <fieldset style={part1 ? {} : { display: "none" }} >
-          <h2>Bienvenido</h2>
-          <div><p>Ya no queda nada, completando la siguiente información formarás parte de la comunidad Kmon.</p></div>
-          <div>
-            <label htmlFor="">Nombre</label>
-            <input type="text"
+          <h2 className="titleLogin">Bienvenido</h2>
+          <div><p className="preferenceIntro">Ya no queda nada, completando la siguiente información formarás parte de la comunidad Kmon.</p></div>
+          <div className="full-input">
+            <label htmlFor="nombre">Nombre</label>
+            <input  type="text"
               name="nombre"
               id="nombre"
               {...register('nombre', {
@@ -91,8 +113,8 @@ const SignUp = () => {
             {errors.nombre && <p>{errors.nombre.message}</p>}
 
           </div>
-          <div>
-            <label htmlFor="">Email</label>
+          <div className="full-input">
+            <label htmlFor="email">Email</label>
             <input type="text"
               name="email"
               id="email"
@@ -109,8 +131,8 @@ const SignUp = () => {
               } />
             {errors.email && <p>{errors.email.message}</p>}
           </div>
-          <div>
-            <label htmlFor="">Password</label>
+          <div className="full-input">
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               name="password"
@@ -132,7 +154,7 @@ const SignUp = () => {
             />
             {errors.password ? <div>{errors.password.message}</div> : null}
           </div>
-          <div>
+          <div className="full-input">
             <label>Repeat password</label>
             <input
               name="password_repeat"
@@ -147,13 +169,28 @@ const SignUp = () => {
 
           </div>
 
-          <div>
+          <div className="termsAccept">
             <label>Deseo recibir en mi mail ofertas, descuentos y promociones de Kmon</label>
-            <input {...register("promos")} type="radio" value="promos" />
+            <Switch
+          onChange={handleChange}
+          checked={checked}
+          className="react-switch"
+        />
           </div>
-          <div>
+          <div className="termsAccept">
             <label htmlFor="">Acepto los términos y condiciones de Kmon</label>
-            <input
+                <Switch
+              onChange={handleChange2}
+              checked={checked2}
+              value="terms"
+              className="react-switch" /> 
+              {/* {
+                ...register('terms',{
+                  required:true
+                }) 
+              }
+              {errors.terms && <p>Tienes que aceptar los términos y condiciones para poder formar parte de nuestra comnunidad</p>} */}
+            {/* <input
               {
               ...register('terms', {
                 required: true
@@ -161,7 +198,7 @@ const SignUp = () => {
               }
               type="radio" value="terms"
             />
-            {errors.terms && <p>Tienes que aceptar los términos y condiciones para poder formar parte de nuestra comnunidad</p>}
+            {errors.terms && <p>Tienes que aceptar los términos y condiciones para poder formar parte de nuestra comnunidad</p>} */}
 
           </div>
         </fieldset>
@@ -169,9 +206,9 @@ const SignUp = () => {
 
         {/* segunda parte del formulario */}
 
-        <div style={part2 ? {} : { display: "none" }}>
-          <h2>Preferencias</h2>
-          <div><p>En una escala de 1-5 (Muy poco-Mucho)¿Qué importancia otorgarías a cada uno de estos conceptos a la hora deconsumir alimentos?</p></div>
+        <div className="fieldsetContainer" style={part2 ? {} : { display: "none" }}>
+          <h2 className="titleLogin">Preferencias</h2>
+          <div><p className="preferenceIntro">En una escala de 1-5 (Muy poco-Mucho)¿Qué importancia otorgarías a cada uno de estos conceptos a la hora de consumir alimentos?</p></div>
           <fieldset>
             <legend>Producto de temporada</legend>
             <label htmlFor="1">
@@ -400,8 +437,8 @@ const SignUp = () => {
 
         {/* tercera parte del formulario */}
 
-        <div style={part3 ? {} : { display: "none" }}>
-          <h2>Preferencias</h2>
+        <div className="fieldsetContainer" style={part3 ? {} : { display: "none" }}>
+          <h2 className="titleLogin">Preferencias</h2>
           <fieldset>
             <legend>Sostenible</legend>
             <label htmlFor="1">
@@ -761,16 +798,18 @@ const SignUp = () => {
           <input type="submit" value="Regístrate" />
           : null}
       </form>
-      {
+     <div className="moveBtns">
+     {
         part2 || part3 ?
-          <button onClick={handleChangePart} value="back">Atras</button>
+          <button className="backArrow" onClick={handleChangePart} value="back"><img  src={Arrow} alt="" />Atrás</button>
           : null
       }
       {
         part1 || part2 ?
-          <button onClick={handleChangePart} value="next">Siguiente</button>
+          <button className="nextArrow"  onClick={handleChangePart} value="next">Siguiente<img src={Arrow} alt="" /></button>
           : null
       }
+     </div>
     </>
   )
 }

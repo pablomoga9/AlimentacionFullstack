@@ -5,6 +5,7 @@ import Recommendations from '../Recommendations/Recommendations';
 import Favorites from "../favorites/favorites"
 import Discounts from "../../../common/Discounts/Discounts";
 import Card from '../../List/Card/Card';
+import Settings from '../../../../assets/img/settings.png'
 
 const Profile = () => {
   const navigate = useNavigate();
@@ -27,9 +28,14 @@ const Profile = () => {
 
 
   return <div>
-    <Link to="/user/profile/edit"><button>Configuracion</button></Link>
-    <img style={{ width: "100px" }} src='https://cdn-icons-png.flaticon.com/512/17/17004.png'></img>
-    <h1>{userData ? userData.email : "Usuario"}</h1>
+    <div className='profileTop'>
+        <div className='profileImg'>
+          <img style={{ width: "100px" }} src='https://cdn-icons-png.flaticon.com/512/17/17004.png'></img>
+          <Link to="/user/profile/edit"><img src={Settings} alt="" /></Link>
+        </div>
+        <h1>{userData ? userData.email : "Usuario"}</h1>
+    </div>
+   
 
     <Recommendations />
 

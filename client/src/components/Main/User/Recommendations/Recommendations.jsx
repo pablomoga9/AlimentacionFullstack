@@ -7,6 +7,7 @@ import { FreeMode } from 'swiper';
 import 'swiper/css';
 import "swiper/css/free-mode";
 import { Link } from "react-router-dom";
+import Card from "../../List/Card/Card";
 
 //Tendra que recibir algun parametro para indicarle la id del comercio a buscar
 const Recommendations = (props) => {
@@ -21,23 +22,30 @@ const Recommendations = (props) => {
 
 
   return (<>
-    <section>
+    <section className="profileSection">
       <h1>Recomendaciones:</h1>
       {recommendations ? recommendations.episode.slice(0, 2)
         .map((item, i) => <MiniCard key={uuidv4()} index={i} value={item} />)
         : "Loading..."}
       {/* <Swiper freeMode={true}
+
                 grabCursor={true}
                 modules={[FreeMode]}
                 className='recommendationCarousel'
                 slidesPerView={2}
                 spaceBetween={30}>
-                {recommendations?recommendations.map((item,i)=>{
-                  return <SwiperSlide key={i}><MiniCard value={item}/></SwiperSlide>
+                {recommendations?recommendations.episode.slice(0,10).map((item,i)=>{
+                  return <SwiperSlide key={uuidv4()} index={i}><MiniCard value={item}/></SwiperSlide>
                 })
-                :null}
+                :<div>
+                  <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide></div>}
                 
-        </Swiper> */}
+        </Swiper>
     </section>
   </>)
 };
