@@ -12,7 +12,10 @@ import 'swiper/css';
 import "swiper/css/free-mode";
 import Card from '../List/Card/Card';
 import Lupa from '../../../assets/img/lupa.png'
-
+import plusSign from '../../../assets/img/plusSign.png'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+AOS.init();
 // import Scanner from './Scanner/Scanner';
 
 
@@ -55,10 +58,10 @@ const Home = () => {
                 slidesPerView={2}
                 spaceBetween={30}>
                 {restaurants?restaurants.map((item,i)=>{
-                  return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
+                  return <SwiperSlide  className='swiperCard' key={i}><Card value={item}/></SwiperSlide>
                 })
                 :null}
-                <SwiperSlide><Link to="/restaurants">Ver más</Link></SwiperSlide>
+                <SwiperSlide className='plusCard'><Link to="/restaurants"><img className='plusImg' src={plusSign} alt="" /><h3>Ver más</h3></Link></SwiperSlide>
               </Swiper>
           </div>
               <h2 className='carouselTitle'>Tiendas</h2>
@@ -70,10 +73,10 @@ const Home = () => {
                   slidesPerView={2}
                   spaceBetween={30}>
                   {stores?stores.map((item,i)=>{
-                    return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
+                    return <SwiperSlide className='swiperCard' key={i}><Card value={item}/></SwiperSlide>
                   })
                   :null}
-                  <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
+                  <SwiperSlide className='plusCard'><Link to="/stores"><img className='plusImg' src={plusSign} alt="" /><h3>Ver más</h3></Link></SwiperSlide>
                 </Swiper>
               </div>
                <h2 className='carouselTitle'>Saber+</h2>
@@ -86,10 +89,10 @@ const Home = () => {
             spaceBetween={30}>
              {/* creat estado con un array de saber+ */}
             {stores?stores.map((item,i)=>{
-              return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
+              return <SwiperSlide className='swiperCard'  key={i}><Card value={item}/></SwiperSlide>
             })
             :null}
-            <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
+            <SwiperSlide className='plusCard'><Link to="/stores"><img className='plusImg' src={plusSign} alt="" /><h3>Ver más</h3></Link></SwiperSlide>
           </Swiper>
                 </div>
         {/* <div className='storesDirectory'>
