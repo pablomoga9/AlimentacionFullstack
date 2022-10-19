@@ -46,16 +46,16 @@ function Nav() {
   return (
     <header>
       {showNav===true?<div>{userCheck === null? <div className='navContainer'>
-       {/* <div className='navUser'>
+       <div className='navUser'>
         <Link onClick={handleClick} to="/">Login</Link>
         <Link onClick={handleClick} to="/signup">Registro</Link>
-       </div> */}
+       </div>
         <Logo className='logoHeader'/>
       </div> : <div className='navContainer'>
-        {/* <div className='navUser'>
+        <div className='navUser'>
           <Link to={'User/Profile'}><p>{userCheck}</p></Link>
           <Link onClick={handleLogout}>Logout</Link>
-        </div> */}
+        </div>
         <Logo className='logoHeader'/>
       </div>}</div>:null}
     </header>

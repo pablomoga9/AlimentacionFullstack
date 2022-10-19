@@ -23,24 +23,35 @@ const Favorites = (props) => {
   console.log(favorites);
 
   return (<>
-    <section>
+    {/* <section>
       <h1>Favorites:</h1>
       {favorites ? favorites.episode.slice(0, 5)
         .map((item, i) => <MiniCard key={uuidv4()} index={i} value={item} />)
         : "Loading..."}
-    </section>
-    {/* <Swiper freeMode={true}
+    </section> */}
+     <section className="profileSection">
+      <h1>Favoritos:</h1>
+      
+        <Swiper freeMode={true}
                 grabCursor={true}
                 modules={[FreeMode]}
-                className='favoritesCarousel'
+                className='recommendationCarousel'
                 slidesPerView={2}
                 spaceBetween={30}>
-                {favorites?favorites.map((item,i)=>{
-                  return <SwiperSlide key={i}><MiniCard value={item}/></SwiperSlide>
+                {favorites?favorites.episode.slice(0,10).map((item,i)=>{
+                  return <SwiperSlide key={uuidv4()} index={i}><MiniCard value={item}/></SwiperSlide>
                 })
-                :null}
+                :<div>
+                  <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide>
+                <SwiperSlide ><div className="spinner"></div></SwiperSlide></div>}
                 
-        </Swiper> */}
+        </Swiper>
+    </section>
+      
   </>)
 };
 
