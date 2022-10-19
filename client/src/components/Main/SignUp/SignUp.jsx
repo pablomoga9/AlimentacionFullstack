@@ -18,7 +18,7 @@ const SignUp = () => {
   const [part3, setPart3] = useState(false);//Estado para mostrar o no la parte 3 del formulario
 
   const [checked, setChecked] = useState(false);
-  const [checked2,setChecked2] = useState(false);
+  const [checked2, setChecked2] = useState(false);
   const handleChange = nextChecked => {
     setChecked(nextChecked);
   };
@@ -31,21 +31,22 @@ const SignUp = () => {
   const onSubmit = async (form) => {
     try {
       console.log(form);
-      alert("La bbdd no está conectada")
-      // const res = await axios.post('http://localhost:5000/api/signup', form);
-      // console.log(res.data);
-      // navigate('/login')
+      // alert("La bbdd no está conectada")
+      const res = await axios.post('http://localhost:5000/api/signup', form);
+      alert("Usuario creado con exito!");
+      console.log(res.data);
+      navigate('/login')
     }
     catch (error) {
       console.log(error);
     }
   }
 
-  function handleChecked(checked){
-    if(checked){
+  function handleChecked(checked) {
+    if (checked) {
       setChecked(false)
     }
-    else{
+    else {
       setChecked(true)
     }
   }
@@ -84,14 +85,14 @@ const SignUp = () => {
   return (
     <>
       {/* Primera parte del formulario */}
-      <Logo/>
+      <Logo value={"noLink"} />
       <form className="loginForm" onSubmit={handleSubmit(onSubmit)}>
         <fieldset style={part1 ? {} : { display: "none" }} >
           <h2 className="titleLogin">Bienvenido</h2>
           <div><p className="preferenceIntro">Ya no queda nada, completando la siguiente información formarás parte de la comunidad Kmon.</p></div>
           <div className="full-input">
             <label htmlFor="nombre">Nombre</label>
-            <input  type="text"
+            <input type="text"
               name="nombre"
               id="nombre"
               {...register('nombre', {
@@ -172,19 +173,19 @@ const SignUp = () => {
           <div className="termsAccept">
             <label>Deseo recibir en mi mail ofertas, descuentos y promociones de Kmon</label>
             <Switch
-          onChange={handleChange}
-          checked={checked}
-          className="react-switch"
-        />
+              onChange={handleChange}
+              checked={checked}
+              className="react-switch"
+            />
           </div>
           <div className="termsAccept">
             <label htmlFor="">Acepto los términos y condiciones de Kmon</label>
-                <Switch
+            <Switch
               onChange={handleChange2}
               checked={checked2}
               value="terms"
-              className="react-switch" /> 
-              {/* {
+              className="react-switch" />
+            {/* {
                 ...register('terms',{
                   required:true
                 }) 
@@ -798,18 +799,18 @@ const SignUp = () => {
           <input type="submit" value="Regístrate" />
           : null}
       </form>
-     <div className="moveBtns">
-     {
-        part2 || part3 ?
-          <button className="backArrow" onClick={handleChangePart} value="back"><img  src={Arrow} alt="" />Atrás</button>
-          : null
-      }
-      {
-        part1 || part2 ?
-          <button className="nextArrow"  onClick={handleChangePart} value="next">Siguiente<img src={Arrow} alt="" /></button>
-          : null
-      }
-     </div>
+      <div className="moveBtns">
+        {
+          part2 || part3 ?
+            <button className="backArrow" onClick={handleChangePart} value="back"><img src={Arrow} alt="" />Atrás</button>
+            : null
+        }
+        {
+          part1 || part2 ?
+            <button className="nextArrow" onClick={handleChangePart} value="next">Siguiente<img src={Arrow} alt="" /></button>
+            : null
+        }
+      </div>
     </>
   )
 }
