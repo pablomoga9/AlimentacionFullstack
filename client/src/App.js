@@ -35,7 +35,7 @@ function App() {
   const checkUser = async () => {
     try {
 
-      const res = await axios.get('https://polar-citadel-31558.herokuapp.com/api/checkUser', { withCredentials: true });
+      const res = await axios.get('http://localhost:5000/api/checkUser', { withCredentials: true });
       // const userToken = res.data.msg.substr(6, res.data.msg.length);
       const userToken = res.data.msg;
 
@@ -55,7 +55,7 @@ function App() {
   const userDetails = async () => {
     try {
       console.log(userCheck);
-      const datas = await axios.get(`https://polar-citadel-31558.herokuapp.com/api/getUser/?email=${userCheck}`);
+      const datas = await axios.get(`http://localhost:5000/api/getUser/?email=${userCheck}`);
       setUserData(...datas.data)
       console.log("user detail", datas.data);
     } catch (error) {
@@ -66,7 +66,7 @@ function App() {
   //Obtener listado de todas las tiendas
   const getStores = async () => {
     try {
-      const res = await axios.get('https://polar-citadel-31558.herokuapp.com/api/store');
+      const res = await axios.get('http://localhost:5000/api/store');
       setStores(res.data.slice(0, 10));
     }
     catch (error) {
@@ -76,7 +76,7 @@ function App() {
 
   const getRestaurants = async () => {
     try {
-      const res = await axios.get('https://polar-citadel-31558.herokuapp.com/api/restaurant');
+      const res = await axios.get('http://localhost:5000/api/restaurant');
       setRestaurants(res.data.slice(0, 10));
     }
     catch (error) {
@@ -88,7 +88,7 @@ function App() {
   //Obtener los detalles de una store
   const getDetails = async (id) => {
     try {
-      const res = await axios.get(`https://polar-citadel-31558.herokuapp.com/api/restaurant/?id=${id}`);
+      const res = await axios.get(`http://localhost:5000/api/restaurant/?id=${id}`);
       console.log(...res.data);
       setDetails(...res.data)
     } catch (error) {
