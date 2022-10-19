@@ -84,7 +84,8 @@ const List = () => {
   }
 
   return (
-    <div className="listContainer" >
+      <div className='showcase'>
+         <div className="listContainer" >
       <div className="backButton">
         <Link to="/home"><img src={BackLogo} alt="" /></Link>
       </div>
@@ -92,7 +93,7 @@ const List = () => {
         <h2 className="storesTitle">Comercios cerca de ti</h2>
       </div>
       <div className="sortBurger">
-        <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button>
+        {/* <button><img className="burgerBtn" src={BurgerBtn} alt="" /></button> */}
         <select className="sortList" onChange={handleChange}>
           <option value="rating">Mejor valorados</option>
           <option value="coments">Más comentados</option>
@@ -105,6 +106,16 @@ const List = () => {
           : <h2>Loading...</h2>}
       </ul>
     </div >
+    <article class="menuHamb">
+        <ul>
+          <li><a href="#">Bienvenida</a></li>
+          <li><a href="./pages/biografia.html">Sobre mí</a></li>
+          <li><a href="./pages/portfolio.html">Portfolio</a></li>
+          <li><a href="./pages/contacto.html">Contacto</a></li>
+         
+        </ul>
+      </article>
+      </div>
   )
 };
 
