@@ -51,7 +51,7 @@ function App() {
   const userDetails = async () => {
     try {
       console.log(userCheck);
-      const datas = await axios.get(`http://localhost:5000/api/getUser/?email=${userCheck}`);
+      const datas = await axios.get(`/api/getUser/?email=${userCheck}`);
       setUserData(...datas.data)
       console.log("user detail", datas.data);
     } catch (error) {
@@ -62,7 +62,7 @@ function App() {
   //Obtener listado de todas las tiendas
   const getStores = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/store');
+      const res = await axios.get('/api/store');
       setStores(res.data.slice(0, 10));
     }
     catch (error) {
@@ -72,7 +72,7 @@ function App() {
 
   const getRestaurants = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/restaurant');
+      const res = await axios.get('/api/restaurant');
       setRestaurants(res.data.slice(0, 10));
     }
     catch (error) {
@@ -84,7 +84,7 @@ function App() {
   //Obtener los detalles de una store
   const getDetails = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/restaurant/?id=${id}`);
+      const res = await axios.get(`/api/restaurant/?id=${id}`);
       console.log(...res.data);
       setDetails(...res.data)
     } catch (error) {
