@@ -81,6 +81,29 @@ const getRestaurantById = async (id) => {
 }
 
 
+const getStores = async (e) => {
+    try {
+        const data = await pool.query(query.getStores);
+        const result = data.rows;
+        return result;
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+const getStoresById = async (id) => {
+    try {
+        const data = await pool.query(query.getRestaurantById, [id]);
+        const result = data.rows;
+        return result;
+    }
+    catch (error) {
+        res.status(400).json({ msg: error.stack })
+    }
+}
+
+
 module.exports = {
     createUser,
     createBusiness,
@@ -88,5 +111,7 @@ module.exports = {
     getBusinessByEmail,
     getUserByEmail,
     getRestaurants,
-    getRestaurantById
+    getRestaurantById,
+    getStores,
+    getStoresById
 }

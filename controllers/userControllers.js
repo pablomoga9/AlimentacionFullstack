@@ -136,7 +136,7 @@ const getRestaurants = async (req, res) => {
 
         } catch (error) {
             console.log(`ERROR: ${error.stack}`);
-            res.status(404).json({ "message": "landing not found" });
+            res.status(404).json({ "message": "restaurant not found" });
         }
     } else {
         // all restaurants
@@ -149,6 +149,34 @@ const getRestaurants = async (req, res) => {
         catch (error) {
             console.log(`ERROR: ${error.stack}`);
             res.status(404).json({ "message": "Restaurants not found" });
+        }
+    }
+}
+
+//Obtener todas las tiendas
+const getStores = async (req, res) => {
+    if (req.query.id) {
+        console.log("req query", req.query);
+        try {
+            const store = await userModels.getStoreById(req.query.id);
+            res.status(200).json(store);
+            console.log(store, store.length);
+
+        } catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "store not found" });
+        }
+    } else {
+        // all restaurants
+        try {
+            const resturants = await userModels.getStores();
+            res.status(200).json(resturants);
+            console.log("All stores", resturants.length);
+
+        }
+        catch (error) {
+            console.log(`ERROR: ${error.stack}`);
+            res.status(404).json({ "message": "store not found" });
         }
     }
 }
@@ -191,5 +219,6 @@ module.exports = {
     saveBooking,
     createReview,
     getReviews,
-    getRestaurants
+    getRestaurants,
+    getStores
 }

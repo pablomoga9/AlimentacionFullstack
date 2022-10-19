@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { useEffect } from 'react';
 import { useContext } from 'react'
 import { checkUserContext } from '../../../context/checkUserContext';
@@ -23,76 +23,98 @@ const Home = () => {
   const { getRestaurants } = useContext(checkUserContext);
   const navigate = useNavigate();
   const { stores, setStores } = useContext(checkUserContext);
-  const {restaurants,setRestaurants} = useContext(checkUserContext);
-  const {showNav,setShowNav} = useContext(checkUserContext);
-
+  const { restaurants, setRestaurants } = useContext(checkUserContext);
+  const [items, setItems] = useState({ ...stores, ...restaurants });
+  const { showNav, setShowNav } = useContext(checkUserContext);
+  const searchInput = useRef();
 
   useEffect(() => {
     setShowNav(true);
     checkUser()
     getStores()
     getRestaurants();
+
+
+
     // if (userCheck === null) {
     //   navigate("/");
     // }
   }, []);
 
+  //Buscar por nombre
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const parameter = searchInput.current.value;
+    const newItem = stores.filter((item, i) => parameter.toUpperCase() == item.place_name.toUpperCase())//"convertimos" en mayusculas ambos parametros a comparar
+    if (newItem.length > 0) {
+      setItems(newItem);
+      alert(newItem)
+    } else {
+      const newItem2 = restaurants.filter((item, i) => parameter.replace(/[\u0300-\u036f]/g, "").toUpperCase() == item.place_name.replace(/[\u0300-\u036f]/g, "").toUpperCase())//"convertimos" en mayusculas ambos parametros a comparar
+      if (newItem2.length > 0) {
+        setItems(newItem2);
+        alert(newItem2)
+      } else { alert("no se han encontrado resultados") }
+    }
+  }
+  console.log(items);
+
 
   return (
     <>
 
-  {/* Dar funcion a este input */}
-          <div className='searchContainer'>
-            <button type='submit'><img src={Lupa} alt="" /></button>
-            <input name='search' type="text" placeholder='Búsqueda...'/>
-          </div>
-          <h2 className='carouselTitle'>Restaurantes</h2>
-          <div className='carouselHome'>
-             <Swiper freeMode={true}
-                grabCursor={true}
-                modules={[FreeMode]}
-                className='homeDirectory'
-                slidesPerView={2}
-                spaceBetween={30}>
-                {restaurants?restaurants.map((item,i)=>{
-                  return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
-                })
-                :null}
-                <SwiperSlide><Link to="/restaurants">Ver más</Link></SwiperSlide>
-              </Swiper>
-          </div>
-              <h2 className='carouselTitle'>Tiendas</h2>
-              <div className='carouselHome'>
-                <Swiper freeMode={true}
-                  grabCursor={true}
-                  modules={[FreeMode]}
-                  className='homeDirectory'
-                  slidesPerView={2}
-                  spaceBetween={30}>
-                  {stores?stores.map((item,i)=>{
-                    return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
-                  })
-                  :null}
-                  <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
-                </Swiper>
-              </div>
-               <h2 className='carouselTitle'>Saber+</h2>
-                <div>
-                     <Swiper freeMode={true}
-            grabCursor={true}
-            modules={[FreeMode]}
-            className='homeDirectory'
-            slidesPerView={2}
-            spaceBetween={30}>
-             {/* creat estado con un array de saber+ */}
-            {stores?stores.map((item,i)=>{
-              return <SwiperSlide key={i}><Card value={item}/></SwiperSlide>
-            })
-            :null}
-            <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
-          </Swiper>
-                </div>
-        {/* <div className='storesDirectory'>
+      {/* Dar funcion a este input */}
+      <div className='searchContainer'>
+        <button type='submit' onClick={handleSearch} ><img src={Lupa} alt="" /></button>
+        <input name='search' ref={searchInput} type="text" placeholder='Búsqueda...' />
+      </div>
+      <h2 className='carouselTitle'>Restaurantes</h2>
+      <div className='carouselHome'>
+        <Swiper freeMode={true}
+          grabCursor={true}
+          modules={[FreeMode]}
+          className='homeDirectory'
+          slidesPerView={2}
+          spaceBetween={30}>
+          {restaurants ? restaurants.map((item, i) => {
+            return <SwiperSlide key={i}><Card isRestaurant={"restaurants"} value={item} /></SwiperSlide>
+          })
+            : null}
+          <SwiperSlide><Link to="/list/restaurants">Ver más</Link></SwiperSlide>
+        </Swiper>
+      </div>
+      <h2 className='carouselTitle'>Tiendas</h2>
+      <div className='carouselHome'>
+        <Swiper freeMode={true}
+          grabCursor={true}
+          modules={[FreeMode]}
+          className='homeDirectory'
+          slidesPerView={2}
+          spaceBetween={30}>
+          {stores ? stores.map((item, i) => {
+            return <SwiperSlide key={i}><Card isRestaurant={false} value={item} /></SwiperSlide>
+          })
+            : null}
+          <SwiperSlide><Link to="/list/stores">Ver más</Link></SwiperSlide>
+        </Swiper>
+      </div>
+      <h2 className='carouselTitle'>Saber+</h2>
+      <div>
+        <Swiper freeMode={true}
+          grabCursor={true}
+          modules={[FreeMode]}
+          className='homeDirectory'
+          slidesPerView={2}
+          spaceBetween={30}>
+          {/* creat estado con un array de saber+ */}
+          {stores ? stores.map((item, i) => {
+            return <SwiperSlide key={i}><Card value={item} /></SwiperSlide>
+          })
+            : null}
+          <SwiperSlide><Link to="/stores">Ver más</Link></SwiperSlide>
+        </Swiper>
+      </div>
+      {/* <div className='storesDirectory'>
 
           <Link className='imgContainer' to={'/stores/'}><img className='storeImg' src="https://revista.storyous.es/wp-content/uploads/sites/2/2018/05/mamacampo3.jpg" alt="" /><h3 className='directoryTitle'>Tiendas</h3></Link>
         </div> */}

@@ -1,7 +1,6 @@
 import React from "react";
 
 const MiniCard = (props) => {
-  console.log(props);
   const info = props.value;
 
   return (
